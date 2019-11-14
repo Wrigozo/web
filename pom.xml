@@ -25,4 +25,7 @@
 <modules>
 <module>web</module>
 </modules>
+<build>
+    <finalName>warehouse</finalName>
+ </build>
 </project>
