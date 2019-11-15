@@ -12,6 +12,8 @@
 <properties>
 	<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	<project.build.outputEncoding>UTF-8</project.build.outputEncoding>
+	<maven.compiler.source>1.8</maven.compiler.source>
+    <maven.compiler.target>1.8</maven.compiler.target>
 </properties>
 
 
@@ -22,10 +24,52 @@
 	</developer>
 </developers>
 
+<description>Warehouse application, where you can store your thing.</description>
+
 <modules>
-<module>web</module>
+	<module>web</module>
 </modules>
 <build>
     <finalName>warehouse</finalName>
- </build>
+</build>
+
+<dependencies>
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>[3.8]</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.6</version>
+            <scope>compile</scope>
+        </dependency>
+</dependencies>
+<reporting>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>3.1.0</version>
+            </plugin>
+        
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-report-plugin</artifactId>
+                <version>3.0.0-M3</version>
+            </plugin>
+            <plugin>
+                <groupId>org.jacoco</groupId>
+                <artifactId>jacoco-maven-plugin</artifactId>
+                <version>0.8.2</version>
+            </plugin>
+            <plugin>
+                <groupId>org.openclover</groupId>
+                <artifactId>clover-maven-plugin</artifactId>
+                <version>4.3.1</version>
+            </plugin>
+        </plugins>
+    </reporting>
 </project>
