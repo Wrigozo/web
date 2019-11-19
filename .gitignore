@@ -1,3 +1,7 @@
 .project
 
 .settings/
+
+/web/.settings/
+
+/web/.project
