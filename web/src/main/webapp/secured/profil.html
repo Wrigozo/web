@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+	crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+	integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+	crossorigin="anonymous"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+	integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+	crossorigin="anonymous"></script>
+<script
+	src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+	integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+	crossorigin="anonymous"></script>
+<style>
+
+	#login {
+		background: white;
+		border-radius: 1em;
+		padding: 2em;
+		box-shadow: 0px 0px 3px 0.8em rgb(18, 102, 144);
+	}
+
+	body {
+		background: rgb(23, 111, 151);
+		font-family: Comic Sans MS;
+	}
+
+	#title{
+		border-bottom: 0.1em white solid;		
+		z-index: 1;
+		position: relative;
+		left: 2.5%;
+		right: 2.5%;
+		max-width: 95%;
+	}
+
+	.container{
+		
+		padding-top: 2em;
+		position: absolute;
+		left: 5%;			
+		width: 40em; 
+    	max-width: 90%;
+	}
+
+	span{
+		font-weight: bold;
+	}
+
+	a, .container>p{
+		color: white;
+		font-size: 1.3em ;
+	}
+
+	.navbar{
+		padding-left:2em;
+	}
+
+	.navbar-brand{
+		font-size:1.5em;
+		position: relative;
+		left:1.5%;
+	}
+
+
+	@media only screen and (max-width: 767px) {
+		.navbar-nav{
+			background-color: rgba(53, 141, 181, 0.6);
+			z-index: 3;
+		}
+}
+	
+</style>
+</head>
+<body>
+	
+		<div id=title >
+			<nav class="navbar navbar-expand-md">
+				<a class="navbar-brand" href="#">Warehouse</a>
+
+				<button class="navbar-toggler navbar-dark" type="button" data-toggle="collapse" data-target="#main-navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+
+				<div class="collapse navbar-collapse" id="main-navigation">
+						<ul class="navbar-nav ml-auto">
+						<li class="nav-item ml-auto">
+							<a class="nav-link" href="#">Products</a>
+						</li>
+						<li class="nav-item ml-auto">
+							<a class="nav-link" href="#">Orders</a>
+						</li>
+						<li class="nav-item ml-auto">
+							<a class="nav-link" href="#">Profile</a>
+						</li>
+						</ul>
+				</div>
+			</nav>
+		</div>
+		<div class="container"  >
+
+			<p>Profile<p>
+				
+			
+			<div id=login>
+				<p><span>Name:</span><br>Kiss Béla</p>
+				<p><span >Country:</span><br>Magyarország</p>
+				<p><span >Zip code:</span><br>4032</p>
+				<p><span>Settlement:</span><br>Debrecen</p>
+				<span >Address:</span><br>Böszörményi út 68.
+			</div>
+
+		</div>
+	
+</body>
+</html>
