@@ -14,7 +14,9 @@ import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-
+//@WebFilter(
+//		urlPatterns = "/secured/*",
+//		servletNames ="LoginServlet")
 public class LoginFilter implements Filter{
 
 	@Override
