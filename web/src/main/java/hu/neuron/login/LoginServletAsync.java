@@ -17,35 +17,36 @@ import hu.neuron.login.modell.Result;
 
 public class LoginServletAsync extends HttpServlet {
 	Map<String, Boolean> map = new HashMap<String, Boolean>();
+
 	@Override
 	public void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-		
-		String n=req.getParameter("username");  
-	    String p=req.getParameter("password");
-	    Gson gson = new Gson();
-	    HttpSession session;
-	    Result r=new Result(false);
-	    
-	  if(n!=null&&p!=null)  {
-		  	
-		    if(n.equals("admin")&&p.equals("password")) {
-		    	
-		    	session = req.getSession();
-		    	session.setAttribute("authenticated", true);
-		    	r=new Result(true);
-		    	
-		    	res.setContentType("application/json");
+
+		String n = req.getParameter("username");
+		String p = req.getParameter("password");
+		Gson gson = new Gson();
+		HttpSession session;
+		Result r = new Result(false);
+
+		if (n != null && p != null) {
+
+			if (n.equals("admin") && p.equals("password")) {
+
+				session = req.getSession();
+				session.setAttribute("authenticated", true);
+				r = new Result(true);
+
+				res.setContentType("application/json");
 				res.setCharacterEncoding("UTF-8");
-		    	res.getWriter().print(gson.toJson(r));
-		    }
-		    
-		    else {
-		    	
-		    	res.getWriter().print(gson.toJson(r));
-		    	
-		    }	
-		    res.getWriter().flush();
-		    
-	    }
+				res.getWriter().print(gson.toJson(r));
+			}
+
+			else {
+
+				res.getWriter().print(gson.toJson(r));
+
+			}
+			res.getWriter().flush();
+
+		}
 	}
 }
