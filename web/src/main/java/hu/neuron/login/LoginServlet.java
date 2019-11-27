@@ -19,23 +19,17 @@ public class LoginServlet extends HttpServlet {
 		
 		String n=req.getParameter("username");  
 	    String p=req.getParameter("password"); 
-	   // System.out.print();
-	     
-	    
+	  
 	  if(n!=null&&p!=null)  {
 		    if(n.equals("admin")&&p.equals("password")) {
-		    	System.out.print("jó ");
 		    	HttpSession session = req.getSession(true);
 		    	session.setAttribute("authenticated", true);
 		    	res.sendRedirect("/warehouse/secured/profil.html");
 		    }
 		    else {
-		    	System.out.print("szar ");
 		    	res.sendRedirect("login.html");
 		    }
 	    }
-	   
-	  System.out.print("n: "+n+"p: "+p);
 	  
 	}
 }

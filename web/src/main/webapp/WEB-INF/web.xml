@@ -4,20 +4,25 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee 
    http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd">
-	<welcome-file-list>
-		<welcome-file>login.html</welcome-file>
-	</welcome-file-list>
 	
 	<servlet>
 		<servlet-name>LoginServlet</servlet-name>
 		<servlet-class>hu.neuron.login.LoginServlet</servlet-class>
 	</servlet>
-
 	<servlet-mapping>
 		<servlet-name>LoginServlet</servlet-name>
 		<url-pattern>/login</url-pattern>
 	</servlet-mapping>
 
+	<servlet>
+		<servlet-name>LoginServletAsync</servlet-name>
+		<servlet-class>hu.neuron.login.LoginServletAsync</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>LoginServletAsync</servlet-name>
+		<url-pattern>/login-async</url-pattern>
+	</servlet-mapping>
+	
 	
 	<filter>
 		<filter-name>LoginFilter</filter-name>
@@ -27,6 +32,9 @@
 	   <filter-name>LoginFilter</filter-name>
 	   <url-pattern>/secured/*</url-pattern>
 	</filter-mapping>
-
+	
+	<welcome-file-list>
+		<welcome-file>login.html</welcome-file>
+	</welcome-file-list>
 	<!-- -->
 </web-app> 

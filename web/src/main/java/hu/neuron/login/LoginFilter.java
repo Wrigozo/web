@@ -29,7 +29,7 @@ public class LoginFilter implements Filter{
 		System.out.print(a);
 		if(a) {
 			chain.doFilter(request, response);
-			System.out.print("van session");
+			
 		}
 		else {
 			System.out.print("nincs session");
