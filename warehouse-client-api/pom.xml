@@ -10,28 +10,14 @@
 		<version>1.0</version>
 	</parent>
 
-	<artifactId>web</artifactId>
-	<packaging>war</packaging>
+	<artifactId>warehouse-client-api</artifactId>
 
-	<name>web</name>
+	<name>warehouse-client-api</name>
 
 	<dependencies>
-		<dependency>
-			<groupId>javax.servlet</groupId>
-			<artifactId>javax.servlet-api</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>com.google.code.gson</groupId>
-			<artifactId>gson</artifactId>
-		</dependency>
 		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
 		</dependency>
-		<dependency>
-			<groupId>hu.neuron</groupId>
-			<artifactId>warehouse-client-api</artifactId>
-		</dependency>
 	</dependencies>
-
 </project>

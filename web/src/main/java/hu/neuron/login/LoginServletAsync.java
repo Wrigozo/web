@@ -1,7 +1,6 @@
 package hu.neuron.login;
 
 import java.io.IOException;
-import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -16,6 +15,10 @@ import com.google.gson.Gson;
 import hu.neuron.login.modell.Result;
 
 public class LoginServletAsync extends HttpServlet {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	Map<String, Boolean> map = new HashMap<String, Boolean>();
 
 	@Override

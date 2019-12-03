@@ -22,7 +22,7 @@ function callServlet() {
 			},
 			failed : function() {
 
-				concole.log("failed");
+				console.log("failed");
 			}
 
 		});

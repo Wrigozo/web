@@ -19,89 +19,8 @@
 	crossorigin="anonymous"></script>
 <script src="https://kit.fontawesome.com/a9139e4db1.js"
 	crossorigin="anonymous"></script>
-	
-<style>
+<link rel="stylesheet" type="text/css" href="resources/styles/login.css" >
 
-.fas {
-	font-size: 1.125rem;
-	text-anchor: middle;
-	-webkit-user-select: none;
-	-moz-user-select: none;
-	-ms-user-select: none;
-	user-select: none;
-	color: rgb(0, 123, 255);
-}
-
-#table {
-	position: absolute;
-	top:50%;
-	left:50%;
-    transform: translate(-50%, -50%);
-	width:25em;
-	min-width: 25em;
-	background: white;
-	border-radius: 1em;
-	padding: 2em;
-	box-shadow: 0px 0px 3px 0.8em rgb(18, 102, 144);
-}
-
-body {
-	background: rgb(23, 111, 151);
-	font-family: FontAwesome;
-}
-
-
-.btn {
-	max-width: 80px;
-	max-height: 2em;
-	font-size: 1em;
-	background-image: linear-gradient(#03aaf7 0%,#00c8ff 31%,#03aaf7 81%);
-	padding:0;
-}
-
-
-#forgot {
-	background: white;
-	font-size: 0.5em;
-}
-
-input {
-    
-    font-style: normal;
-    font-weight: normal;
-	margin: 1.5em 0;
-}
-
-::placeholder{
-	color:silver !important;
-}
-#title {
-	font-size: 1em;
-}
-#forgot {
-	
-	border: 0em;
-	text-decoration: underline;
-	text-decoration-color: silver !important;
-}
-span{
-	font-family: Arial, Helvetica, sans-serif;
-	text-decoration: none;
-	color:SlateGray ;
-	font-weight: normal;
-
-}
-
-@media (max-width: 600px) { 
-	#table {
-  		width: 90% !important;
-		min-width: 90%!important;
-		max-width: 90% !important;
-	}
- }
-
-
-</style>
 </head>
 <body>
 	
@@ -117,9 +36,18 @@ span{
 					class="form-control"  placeholder="&#xf007; user name" autofocus>
 				<input name="password" type="password" id="inputPassword"
 					class="form-control"  placeholder="&#xf084; password" required>
+				<p><% 
+						if(session.getAttribute("authenticated")!=null){
+							if(session.getAttribute("authenticated").equals(false)){
+								out.print("Érvénytelen belépési adatok!");
+							} 
+						}
+					%>
+				</p>
 				<a href="#" id="forgot">forgot password</a>
 				<button id="loginbutton" class="btn btn-lg btn-primary btn-block"
 					type="submit">Login</button>
+				
 			</form>
 		</div>
 	
