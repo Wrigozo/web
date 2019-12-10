@@ -4,14 +4,14 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
+	<artifactId>warehouse-client-api</artifactId>
+
 	<parent>
 		<groupId>hu.neuron</groupId>
 		<artifactId>warehouse</artifactId>
 		<version>1.0</version>
 	</parent>
-
-	<artifactId>warehouse-client-api</artifactId>
-
+	
 	<name>warehouse-client-api</name>
 
 	<dependencies>

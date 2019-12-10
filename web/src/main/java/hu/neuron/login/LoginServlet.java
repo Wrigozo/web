@@ -1,6 +1,9 @@
 package hu.neuron.login;
 
 import java.io.*;
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import hu.neuron.warehouse.client.api.Product;
@@ -22,14 +25,22 @@ public class LoginServlet extends HttpServlet {
 		String n = req.getParameter("username");
 		String p = req.getParameter("password");
 
-		//Product product = new Product("Sissi", "tej", 1, 100, 200, "nagyon finom");
+		Product product1 = new Product("Sissi1", "tej", 1, 100, 200, "nagyon finom");
+		Product product2 = new Product("Sissi2", "tej", 1, 100, 200, "nagyon finom");
+		Product product3 = new Product("Sissi3", "tej", 1, 100, 200, "nagyon finom");
+		
+		List<Product> products=new ArrayList<>();
+		
+		products.add(product1);
+		products.add(product2);
+		products.add(product3);
 
 		HttpSession session = req.getSession(true);
 		if (n != null && p != null) {
 			if (n.equals("admin") && p.equals("password")) {
 
 				session.setAttribute("authenticated", true);
-				//session.setAttribute("product", product);
+				session.setAttribute("products", products);
 				
 				res.sendRedirect("/warehouse/secured/profil.html");
 			} else {

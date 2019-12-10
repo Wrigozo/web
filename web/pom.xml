@@ -4,14 +4,14 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
+	<artifactId>web</artifactId>
+	<packaging>war</packaging>
+
 	<parent>
 		<groupId>hu.neuron</groupId>
 		<artifactId>warehouse</artifactId>
 		<version>1.0</version>
 	</parent>
-
-	<artifactId>web</artifactId>
-	<packaging>war</packaging>
 
 	<name>web</name>
 
@@ -32,6 +32,17 @@
 			<groupId>hu.neuron</groupId>
 			<artifactId>warehouse-client-api</artifactId>
 		</dependency>
+		<dependency>
+			<groupId>jstl</groupId>
+			<artifactId>jstl</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.glassfish.jersey.containers</groupId>
+			<artifactId>jersey-container-servlet-core</artifactId>
+		</dependency>
+				<dependency>
+				<groupId>org.glassfish.jersey.media</groupId>
+				<artifactId>jersey-media-json-jackson</artifactId>
+		</dependency>
 	</dependencies>
-
 </project>
