@@ -19,37 +19,38 @@
 	crossorigin="anonymous"></script>
 <script src="https://kit.fontawesome.com/a9139e4db1.js"
 	crossorigin="anonymous"></script>
-<link rel="stylesheet" type="text/css" href="resources/styles/login.css" >
+<link rel="stylesheet" type="text/css" href="resources/styles/login.css">
 
 </head>
 <body>
-	
-		<div id=table >
-			<form class="form-signin" action="/warehouse/login" method="post">
+
+	<div id=table>
+		<form class="form-signin" action="/warehouse/login" method="post">
 
 
-				<h1 id="title" >
-					<i class="fas fa-user"><span>  User Login</span></i>
-				</h1>
+			<h1 id="title">
+				<i class="fas fa-user"><span> User Login</span></i>
+			</h1>
 
-				<input name="username" type="text" id="inputUser"
-					class="form-control"  placeholder="&#xf007; user name" autofocus>
-				<input name="password" type="password" id="inputPassword"
-					class="form-control"  placeholder="&#xf084; password" required>
-				<p><% 
-						if(session.getAttribute("authenticated")!=null){
-							if(session.getAttribute("authenticated").equals(false)){
-								out.print("Érvénytelen belépési adatok!");
-							} 
+			<input name="username" type="text" id="inputUser"
+				class="form-control" placeholder="&#xf007; user name" autofocus>
+			<input name="password" type="password" id="inputPassword"
+				class="form-control" placeholder="&#xf084; password" required>
+			<p>
+				<%
+					if (session.getAttribute("authenticated") != null) {
+						if (session.getAttribute("authenticated").equals(false)) {
+							out.print("Érvénytelen belépési adatok!");
 						}
-					%>
-				</p>
-				<a href="#" id="forgot">forgot password</a>
-				<button id="loginbutton" class="btn btn-lg btn-primary btn-block"
-					type="submit">Login</button>
-				
-			</form>
-		</div>
-	
+					}
+				%>
+			</p>
+			<a href="#" id="forgot">forgot password</a>
+			<button id="loginbutton" class="btn btn-lg btn-primary btn-block"
+				type="submit">Login</button>
+
+		</form>
+	</div>
+
 </body>
 </html>

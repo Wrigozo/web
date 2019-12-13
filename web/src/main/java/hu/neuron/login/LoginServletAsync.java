@@ -36,7 +36,7 @@ public class LoginServletAsync extends HttpServlet {
 
 				session = req.getSession();
 				session.setAttribute("authenticated", true);
-				r = new Result(true);
+				r .setResult(true);
 
 				res.setContentType("application/json");
 				res.setCharacterEncoding("UTF-8");

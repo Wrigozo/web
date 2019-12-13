@@ -10,10 +10,14 @@ public class Result implements Serializable {
 	}
 
 	public Result(boolean r) {
-		result = r;
+		this.result = r;
 	}
 
 	public boolean getResult() {
 		return result;
+	}
+	
+	public void setResult(boolean result) {
+		this.result=result;
 	}
 }

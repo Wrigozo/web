@@ -5,3 +5,7 @@
 /web/.settings/
 
 /web/.project
+
+*/.project
+
+*/.settings/

@@ -4,7 +4,7 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee 
    http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd">
-	
+
 	<servlet>
 		<servlet-name>LoginServlet</servlet-name>
 		<servlet-class>hu.neuron.login.LoginServlet</servlet-class>
@@ -22,31 +22,54 @@
 		<servlet-name>LoginServletAsync</servlet-name>
 		<url-pattern>/login-async</url-pattern>
 	</servlet-mapping>
-	
+
 	<servlet>
-        <servlet-name>jersey-servlet</servlet-name>
-         <servlet-class>org.glassfish.jersey.servlet.ServletContainer</servlet-class>
-        <init-param>
-             <param-name>jersey.config.server.provider.packages</param-name>
-            <param-value>hu.neuron.services</param-value>
-        </init-param>
-        <load-on-startup>1</load-on-startup>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>jersey-servlet</servlet-name>
-        <url-pattern>/api/*</url-pattern>
-    </servlet-mapping>
-	
-	
+		<servlet-name>jersey-servlet</servlet-name>
+		<servlet-class>org.glassfish.jersey.servlet.ServletContainer</servlet-class>
+		<init-param>
+			<param-name>jersey.config.server.provider.packages</param-name>
+			<param-value>hu.neuron.services</param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>jersey-servlet</servlet-name>
+		<url-pattern>/api/*</url-pattern>
+	</servlet-mapping>
+
+	<listener>
+		<listener-class>hu.neuron.config.StartingListener</listener-class>
+	</listener>
+	<context-param>
+		<param-name>JDBC-url</param-name>
+		<param-value>jdbc:hsqldb:hsql://localhost/warehouse</param-value>
+	</context-param>
+	<context-param>
+		<param-name>database</param-name>
+		<param-value>warehouse</param-value>
+	</context-param>
+	<context-param>
+		<param-name>JDBCDriverClass</param-name>
+		<param-value>org.hsqldb.jdbcDriver</param-value>
+	</context-param>
+	<context-param>
+		<param-name>username</param-name>
+		<param-value>sa</param-value>
+	</context-param>
+	<context-param>
+		<param-name>password</param-name>
+		<param-value></param-value>
+	</context-param>
+
 	<filter>
 		<filter-name>LoginFilter</filter-name>
 		<filter-class>hu.neuron.login.LoginFilter</filter-class>
 	</filter>
 	<filter-mapping>
-	   <filter-name>LoginFilter</filter-name>
-	   <url-pattern>/secured/*</url-pattern>
+		<filter-name>LoginFilter</filter-name>
+		<url-pattern>/secured/*</url-pattern>
 	</filter-mapping>
-	
+
 	<welcome-file-list>
 		<welcome-file>login.jsp</welcome-file>
 	</welcome-file-list>

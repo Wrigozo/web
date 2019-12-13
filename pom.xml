@@ -70,6 +70,17 @@
 				<artifactId>jersey-media-json-jackson</artifactId>
 				<version>2.27</version>
 			</dependency>
+			<dependency>
+				<groupId>org.hsqldb</groupId>
+				<artifactId>hsqldb</artifactId>
+				<version>2.4.0</version>
+				<scope>compile</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.mybatis</groupId>
+				<artifactId>mybatis</artifactId>
+				<version>3.5.3</version>
+			</dependency>
 		</dependencies>
 	</dependencyManagement>
 

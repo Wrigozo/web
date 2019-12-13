@@ -23,11 +23,12 @@ public class LoginServlet extends HttpServlet {
 		// res.setContentType("text/html");// setting the content type
 
 		String n = req.getParameter("username");
+		
 		String p = req.getParameter("password");
 
-		Product product1 = new Product("Sissi1", "tej", 1, 100, 200, "nagyon finom");
-		Product product2 = new Product("Sissi2", "tej", 1, 100, 200, "nagyon finom");
-		Product product3 = new Product("Sissi3", "tej", 1, 100, 200, "nagyon finom");
+		Product product1 = new Product("Sissi1", "tej", "liter", 100, 200, "nagyon finom");
+		Product product2 = new Product("Sissi2", "tej", "gramm", 100, 200, "nagyon finom");
+		Product product3 = new Product("Sissi3", "tej", "gramm", 100, 200, "nagyon finom");
 		
 		List<Product> products=new ArrayList<>();
 		
@@ -36,6 +37,7 @@ public class LoginServlet extends HttpServlet {
 		products.add(product3);
 
 		HttpSession session = req.getSession(true);
+		
 		if (n != null && p != null) {
 			if (n.equals("admin") && p.equals("password")) {
 
@@ -43,6 +45,7 @@ public class LoginServlet extends HttpServlet {
 				session.setAttribute("products", products);
 				
 				res.sendRedirect("/warehouse/secured/profil.html");
+				
 			} else {
 				session.setAttribute("authenticated", false);
 				res.sendRedirect("login.jsp");

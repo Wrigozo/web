@@ -1,5 +1,8 @@
 D:\_git\gyakorlat\warehouse\web\src\main\java\hu\neuron\services\ProductService.java
 D:\_git\gyakorlat\warehouse\web\src\main\java\hu\neuron\login\modell\Result.java
+D:\_git\gyakorlat\warehouse\web\src\main\java\hu\neuron\config\DatabaseProperties.java
+D:\_git\gyakorlat\warehouse\web\src\main\java\hu\neuron\config\StartingListener.java
 D:\_git\gyakorlat\warehouse\web\src\main\java\hu\neuron\login\LoginServletAsync.java
 D:\_git\gyakorlat\warehouse\web\src\main\java\hu\neuron\login\LoginServlet.java
+D:\_git\gyakorlat\warehouse\web\src\main\java\hu\neuron\config\DatabaseUtil.java
 D:\_git\gyakorlat\warehouse\web\src\main\java\hu\neuron\login\LoginFilter.java
