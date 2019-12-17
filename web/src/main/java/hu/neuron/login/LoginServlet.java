@@ -20,15 +20,14 @@ public class LoginServlet extends HttpServlet {
 
 	@Override
 	public void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-		// res.setContentType("text/html");// setting the content type
-
+		 
 		String n = req.getParameter("username");
 		
 		String p = req.getParameter("password");
 
-		Product product1 = new Product("Sissi1", "tej", "liter", 100, 200, "nagyon finom");
-		Product product2 = new Product("Sissi2", "tej", "gramm", 100, 200, "nagyon finom");
-		Product product3 = new Product("Sissi3", "tej", "gramm", 100, 200, "nagyon finom");
+		Product product1 = new Product(3,"Sissi1", "tej", "liter", 100, 200, "nagyon finom");
+		Product product2 = new Product(4,"Sissi2", "tej", "gramm", 100, 200, "nagyon finom");
+		Product product3 = new Product(5,"Sissi3", "tej", "gramm", 100, 200, "nagyon finom");
 		
 		List<Product> products=new ArrayList<>();
 		
@@ -44,7 +43,7 @@ public class LoginServlet extends HttpServlet {
 				session.setAttribute("authenticated", true);
 				session.setAttribute("products", products);
 				
-				res.sendRedirect("/warehouse/secured/profil.html");
+				res.sendRedirect("/web/secured/profil.html");
 				
 			} else {
 				session.setAttribute("authenticated", false);

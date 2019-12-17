@@ -25,7 +25,7 @@
 <body>
 
 	<div id=table>
-		<form class="form-signin" action="/warehouse/login" method="post">
+		<form class="form-signin" action="/web/login" method="post">
 
 
 			<h1 id="title">

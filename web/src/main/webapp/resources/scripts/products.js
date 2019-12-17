@@ -10,25 +10,28 @@ function callServlet() {
 		datatype : "json",
 
 		success : function(result) {
-			document.write("<table>");
-			for (i = 0; i < 3; i++) {
-				document.write("<tr>");
 
-				document.write("<td>", result[i].name, "</td>");
-				document.write("<td>", result[i].category, "</td>");
-				document.write("<td>", result[i].unit, "</td>");
-				document.write("<td>", result[i].purchasePrice, "</td>");
-				document.write("<td>", result[i].salePrice, "</td>");
-				document.write("<td>", result[i].description, "</td>");
+			$("tbody").find("tr").remove();
 
-				document.write("</tr>");
+			data = result;
+			str=""
+			for (i = 0; i < result.length; i++) {
+				// console.log(result);
+				str=str.concat("<tr><td>" + result[i].id + "</td>" + "<td>"
+						+ result[i].name + "</td>" + "<td>"
+						+ result[i].category + "</td>" + "<td>"
+						+ result[i].unit + "</td>" + "<td>"
+						+ result[i].purchasePrice + "</td>" + "<td>"
+						+ result[i].salePrice + "</td>" + "<td>"
+						+ result[i].description + "</td><tr>");
 			}
-			document.write("</table>");
+
+			$("tbody").append(str);
 
 		},
 
 		error : function(e) {
-			console.log("Error");
+			console.log("Nem sikerült lekérni az adatokat!:(");
 		}
 
 	});

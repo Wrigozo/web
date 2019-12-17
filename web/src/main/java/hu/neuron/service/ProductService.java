@@ -1,5 +1,6 @@
-package hu.neuron.services;
+package hu.neuron.service;
 
+import java.io.UnsupportedEncodingException;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -31,15 +32,20 @@ public class ProductService {
 	@GET
 	@Path("/getProducts")
 	@Produces(MediaType.APPLICATION_JSON)
-	public List<Product> getProduct(@Context HttpServletRequest request) throws SQLException, ClassNotFoundException {
-
+	public List<Product> getProduct(@Context HttpServletRequest request) throws SQLException, ClassNotFoundException, UnsupportedEncodingException {
+		System.out.println("hívódik");
 		List<Product> products = new ArrayList<>();
+		
+		Connection conn=DatabaseUtil.getConnection();
 
-		Statement stmt = DatabaseUtil.getConnection().createStatement();
+		Statement stmt = conn.createStatement();
 
 		ResultSet rs = stmt.executeQuery("SELECT * FROM product;");
 
 		while (rs.next()) {
+			
+			int id=rs.getInt("id");
+			
 			String name = rs.getString("name");
 			String category = rs.getString("category");
 
@@ -51,10 +57,11 @@ public class ProductService {
 
 			String description = rs.getString("description");
 
-			products.add(new Product(name, category, unit, purchasePrice, salePrice, description));
+			products.add(new Product(id, name, category, unit, purchasePrice, salePrice, description));
 
+			DatabaseUtil.closeConnection(conn);
 		}
-
+		
 		return products;
 	}
 

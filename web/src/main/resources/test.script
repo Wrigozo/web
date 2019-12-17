@@ -1,14 +1,16 @@
 DROP table product;
 CREATE TABLE product(
-   name varchar(30),
-   category varchar(30),
-   unit varchar(30),
+   id INT IDENTITY PRIMARY KEY,
+   name varchar(30) NOT NULL,
+   category varchar(30) NOT NULL,
+   unit varchar(30) NOT NULL,
    purchasePrice int,
    salePrice int,
    description varchar(80)
 );
-insert into product values('Sissi', 'tej', 'liter', 200, 300, 'nagyon finom');
-insert into product values('Medvesajt', 'sajt', 'gramm', 200, 300, 'magyar termék');
-insert into product values('Chio chips', 'chips', 'gramm', 150, 350, 'drága');
+
+insert into product(name, category, unit, purchasePrice, salePRice, description) values('Sissi', 'tej', 'liter', 200, 300, 'nagyon finom');
+insert into product(name, category, unit, purchasePrice, salePRice, description) values('Medvesajt', 'sajt', 'gramm', 200, 300, 'magyar termék');
+insert into product(name, category, unit, purchasePrice, salePRice, description) values('Chio chips', 'chips', 'gramm', 150, 350, 'drága');
 
 select * from  product;

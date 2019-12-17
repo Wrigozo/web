@@ -17,6 +17,7 @@ import javax.servlet.ServletContextListener;
 import javax.servlet.annotation.WebListener;
 
 import org.apache.ibatis.jdbc.ScriptRunner;
+import org.hsqldb.persist.HsqlProperties;
 import org.hsqldb.server.Server;
 
 @WebListener
@@ -24,13 +25,7 @@ public class StartingListener implements ServletContextListener {
 
 	private Server server = new Server();
 
-	private static Connection connection;
-
-	private ResultSet resultSet;
-
 	private ServletContext context;
-
-	private Statement statement;
 
 	private DatabaseProperties databaseProperties = DatabaseProperties.getInstance();
 
@@ -51,7 +46,9 @@ public class StartingListener implements ServletContextListener {
 
 		// The actual database will be named 'warehouse'
 		server.setDatabaseName(0, databaseName);
-
+//HsqlProperties props = new HsqlProperties();
+//props.setProperty(key, value);
+//server.setProperties(props);
 		// settings and data of myDb will be stored in files
 		// myDb.properties and myDb.script
 		server.setDatabasePath(0, "mem:warehouse");
@@ -96,8 +93,6 @@ public class StartingListener implements ServletContextListener {
 
 	}
 
-	public static Connection getConnection() {
-		return connection;
-	}
+	
 
 }

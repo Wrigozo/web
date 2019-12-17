@@ -24,17 +24,18 @@ public class DatabaseUtil {
 			
 			e.getMessage();
 			System.out.append("nem találja az osztályt");
-		} finally {
-			
-			try {
-				
-				// connection.close();
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
+		} 
 
 		return connection;
+	}
+	public static void closeConnection(Connection connection) {
+		try {
+			connection.close();
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+		}
+		
 	}
 
 }

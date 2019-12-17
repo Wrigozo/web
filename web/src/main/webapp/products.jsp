@@ -8,6 +8,7 @@
 	<table>
 		<c:forEach items="${sessionScope.products}" var="item">
 			<tr>
+				<td class="id"><c:out value="${item.id}" /></td>
 				<td class="name"><c:out value="${item.name}" /></td>
 				<td class="category"><c:out value="${item.category}" /></td>
 				<td class="unit"><c:out value="${item.unit}" /></td>
@@ -23,7 +24,7 @@
 		src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 	<script src="https://code.jquery.com/jquery-3.2.1.min.js"
 		integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-		crossorigin="anonymous"></script>
+		crossOrigin="anonymous"></script>
 	<script src="resources/scripts/products.js"></script>
 </body>
 </html>
