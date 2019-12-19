@@ -46,9 +46,9 @@ public class StartingListener implements ServletContextListener {
 
 		// The actual database will be named 'warehouse'
 		server.setDatabaseName(0, databaseName);
-//HsqlProperties props = new HsqlProperties();
-//props.setProperty(key, value);
-//server.setProperties(props);
+		//HsqlProperties props = new HsqlProperties();
+		//props.setProperty(key, value);
+		//server.setProperties(props);
 		// settings and data of myDb will be stored in files
 		// myDb.properties and myDb.script
 		server.setDatabasePath(0, "mem:warehouse");
@@ -75,10 +75,10 @@ public class StartingListener implements ServletContextListener {
 		try {
 			sr = new ScriptRunner(DatabaseUtil.getConnection());
 		} catch (ClassNotFoundException e1) {
-			
+
 			e1.printStackTrace();
 		} catch (SQLException e1) {
-			
+
 			e1.printStackTrace();
 		}
 		Reader reader = null;
@@ -86,13 +86,11 @@ public class StartingListener implements ServletContextListener {
 			reader = new BufferedReader(
 					new FileReader(StartingListener.class.getClassLoader().getResource("test.script").getFile()));
 		} catch (FileNotFoundException e) {
-			
+
 			e.printStackTrace();
 		}
 		sr.runScript(reader);
 
 	}
-
-	
 
 }

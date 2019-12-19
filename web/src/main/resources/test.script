@@ -12,5 +12,8 @@ CREATE TABLE product(
 insert into product(name, category, unit, purchasePrice, salePRice, description) values('Sissi', 'tej', 'liter', 200, 300, 'nagyon finom');
 insert into product(name, category, unit, purchasePrice, salePRice, description) values('Medvesajt', 'sajt', 'gramm', 200, 300, 'magyar termék');
 insert into product(name, category, unit, purchasePrice, salePRice, description) values('Chio chips', 'chips', 'gramm', 150, 350, 'drága');
+insert into product(name, category, unit, purchasePrice, salePRice, description) values('Sissi1', 'tej', 'liter', 100, 200, 'nagyon finom');
+insert into product(name, category, unit, purchasePrice, salePRice, description) values('Sissi2', 'tej', 'liter', 100, 200, 'nagyon finom');
+insert into product(name, category, unit, purchasePrice, salePRice, description) values('Sissi3', 'tej', 'liter', 100, 200, 'nagyon finom');
 
 select * from  product;

@@ -6,6 +6,14 @@
 
 /web/.project
 
+/web/.classpath
+
+/web/target
+
 */.project
 
 */.settings/
+
+*/.classpath
+
+*/target/

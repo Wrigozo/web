@@ -1,14 +1,20 @@
-package hu.neuron.warehouse.client.api;
+package hu.neuron.database.entity;
 
-import lombok.Getter;
-import lombok.Setter;
+import javax.persistence.*;
 
-@Getter
-@Setter
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+ 
+@Entity
+@Table(name = "product")
 public class Product {
-	
-	private int id;
 
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int id;
+	
 	private String name;
 
 	private String category;
@@ -33,7 +39,6 @@ public class Product {
 		this.salePrice = salePrice;
 		this.description = description;
 	}
-	
 
 	public int getId() {
 		return id;
@@ -91,5 +96,15 @@ public class Product {
 		this.description = description;
 	}
 	
-
+	@Override
+    public String toString() {
+        return "Product{" +
+                "name='" + name + '\'' +
+                ", category='" + category + '\'' +
+                ", unit='" + unit + '\'' +
+                ", purchasePrice='" + purchasePrice + '\'' +
+                ", salePrice='" + salePrice + '\'' +
+                ", description='" + description + '\'' +
+                '}';
+    }
 }
