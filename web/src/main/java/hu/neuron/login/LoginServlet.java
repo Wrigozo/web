@@ -3,7 +3,6 @@ package hu.neuron.login;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Logger;
 
 import javax.servlet.http.HttpSession;
 
@@ -42,9 +41,7 @@ public class LoginServlet extends HttpServlet {
 			products.add(modelMapper.map(product, ProductVO.class));
 		}
 
-//        for(ProductVO q:products) {
-//        	System.out.println(q.getName());
-//        }
+        System.out.print(products);
 
 		HttpSession session = req.getSession(true);
 

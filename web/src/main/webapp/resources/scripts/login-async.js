@@ -15,7 +15,7 @@ function callServlet() {
 
 				if (result["result"]) {
 					console.log("Üdvözöljük!");
-					location.replace("/warehouse/secured/profil.html");
+					location.replace("/web/secured/profil.html");
 				} else {
 					console.log("Érvénytelen belépési adatok!");
 				}

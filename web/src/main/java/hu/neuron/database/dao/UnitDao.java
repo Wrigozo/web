@@ -8,21 +8,20 @@ import org.hibernate.Transaction;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
 
-import hu.neuron.database.daoimpl.ProductDaoInterface;
-import hu.neuron.database.entity.Product;
+import hu.neuron.database.daoimpl.UnitDaoInterface;
+import hu.neuron.database.entity.Unit;
 import lombok.Getter;
 import lombok.Setter;
 
-
 @Getter
 @Setter
-public class ProductDao implements ProductDaoInterface<Product> {
+public class UnitDao implements UnitDaoInterface<Unit>{
 
 	private Session currentSession;
 
 	private Transaction currentTransaction;
 
-	public ProductDao() {
+	public UnitDao() {
 	}
 
 	public Session openCurrentSession() {
@@ -54,47 +53,46 @@ public class ProductDao implements ProductDaoInterface<Product> {
 	}
 
 	@Override
-	public void persist(Product product) {
+	public void persist(Unit unit) {
 
-		getCurrentSession().save(product);
+		getCurrentSession().save(unit);
 	}
 
 	@Override
-	public void update(Product product) {
+	public void update(Unit unit) {
 
-		getCurrentSession().update(product);
+		getCurrentSession().update(unit);
 	}
 
 	@Override
-	public Product findById(long id) {
+	public Unit findById(long id) {
 
-		Product product = (Product) getCurrentSession().get(Product.class, id);
+		Unit product = (Unit) getCurrentSession().get(Unit.class, id);
 		return product;
 	}
 
 	@Override
-	public void delete(Product product) {
-		getCurrentSession().delete(product);
+	public void delete(Unit unit) {
+		getCurrentSession().delete(unit);
 
 	}
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<Product> findAll() {
+	public List<Unit> findAll() {
 
-		List<Product> products = (List<Product>) getCurrentSession().createQuery("select p from Product p").list();
-		return products;
+		List<Unit> unites = (List<Unit>) getCurrentSession().createQuery("select u from Unit u").list();
+		return unites;
 	}
 
 	@Override
 	public void deleteAll() {
 
-		List<Product> productList = findAll();
-		for (Product product : productList) {
-			delete(product);
+		List<Unit> unitList = findAll();
+		for (Unit unit : unitList) {
+			delete(unit);
 		}
 	}
 
 	
-
 }

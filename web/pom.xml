@@ -68,5 +68,25 @@
 			<groupId>org.modelmapper</groupId>
 			<artifactId>modelmapper</artifactId>
 		</dependency>
+
 	</dependencies>
+	<!-- <build>
+
+
+		<plugins>
+			<plugin>
+				<groupId>info.ejava.utils.jpa</groupId>
+				<artifactId>jpa-schemagen-maven-plugin</artifactId>
+				<version>5.1.0-SNAPSHOT</version>
+				<executions>
+					<execution>
+						<goals>
+							<goal>generate</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+
+	</build> -->
 </project>

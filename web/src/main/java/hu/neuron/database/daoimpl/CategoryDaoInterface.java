@@ -2,9 +2,9 @@ package hu.neuron.database.daoimpl;
 
 import java.util.List;
 
-public interface ProductDaoInterface<T>{
+public interface CategoryDaoInterface<T> {
 
-	public void persist(T entity);
+public void persist(T entity);
     
     public void update(T entity);
      

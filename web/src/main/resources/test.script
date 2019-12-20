@@ -1,19 +1,55 @@
 DROP table product;
-CREATE TABLE product(
-   id INT IDENTITY PRIMARY KEY,
-   name varchar(30) NOT NULL,
-   category varchar(30) NOT NULL,
-   unit varchar(30) NOT NULL,
-   purchasePrice int,
-   salePrice int,
-   description varchar(80)
+DROP table category;
+DROP table unit;
+
+CREATE TABLE category(
+   id BIGINT IDENTITY PRIMARY KEY,
+   category varchar(30) UNIQUE NOT NULL
 );
 
-insert into product(name, category, unit, purchasePrice, salePRice, description) values('Sissi', 'tej', 'liter', 200, 300, 'nagyon finom');
-insert into product(name, category, unit, purchasePrice, salePRice, description) values('Medvesajt', 'sajt', 'gramm', 200, 300, 'magyar termék');
-insert into product(name, category, unit, purchasePrice, salePRice, description) values('Chio chips', 'chips', 'gramm', 150, 350, 'drága');
-insert into product(name, category, unit, purchasePrice, salePRice, description) values('Sissi1', 'tej', 'liter', 100, 200, 'nagyon finom');
-insert into product(name, category, unit, purchasePrice, salePRice, description) values('Sissi2', 'tej', 'liter', 100, 200, 'nagyon finom');
-insert into product(name, category, unit, purchasePrice, salePRice, description) values('Sissi3', 'tej', 'liter', 100, 200, 'nagyon finom');
+CREATE TABLE unit(
+   id BIGINT IDENTITY PRIMARY KEY,
+   unit varchar(30) UNIQUE NOT NULL
+);
+
+CREATE TABLE product(
+   id BIGINT IDENTITY PRIMARY KEY,
+   name varchar(30) NOT NULL,
+   categoryid BIGINT NOT NULL,
+   unitid BIGINT NOT NULL,
+   quantity int,
+   purchasePrice int,
+   salePrice int,
+   description varchar(80),
+   
+   FOREIGN KEY (categoryid) REFERENCES category(id),
+   FOREIGN KEY (unitid) REFERENCES unit(id)
+);
+
+
+
+
+insert into category(category) values('tej');
+insert into category(category) values('kenyér');
+insert into category(category) values('tejföl');
+insert into category(category) values('csoki');
+insert into category(category) values('sajt');
+insert into category(category) values('ecet');
+insert into category(category) values('chips');
+
+
+insert into unit(unit) values('liter');
+insert into unit(unit) values('gramm');
+
+select * from category;
+
+select * from unit;
+
+insert into product(name, categoryid, unitid, quantity, purchasePrice, salePrice, description) values('Sissi', 0, 0, 1, 200, 300, 'nagyon finom');
+insert into product(name, categoryid, unitid, quantity, purchasePrice, salePrice, description) values('Medvesajt', 4, 1, 5, 200, 300, 'magyar termék');
+insert into product(name, categoryid, unitid, quantity, purchasePrice, salePrice, description) values('Chio chips', 6, 1 ,8, 150, 350, 'drága');
+insert into product(name, categoryid, unitid, quantity, purchasePrice, salePrice, description) values('Sissi1', 0, 0, 10, 100, 200, 'nagyon finom');
+insert into product(name, categoryid, unitid, quantity, purchasePrice, salePrice, description) values('Sissi2', 0, 0, 5, 100, 200, 'nagyon finom');
+insert into product(name, categoryid, unitid, quantity, purchasePrice, salePrice, description) values('Sissi3', 0, 0, 7, 100, 200, 'nagyon finom');
 
 select * from  product;
