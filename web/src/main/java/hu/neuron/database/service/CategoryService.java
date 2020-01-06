@@ -52,7 +52,7 @@ public class CategoryService {
         categoryDao.closeCurrentSessionwithTransaction();
     }
  
-    public CategoryDao productDao() {
+    public CategoryDao getCategoryDao() {
         return categoryDao;
     }
 }

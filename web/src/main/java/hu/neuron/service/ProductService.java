@@ -17,6 +17,7 @@ import org.modelmapper.ModelMapper;
 
 import hu.neuron.config.DatabaseUtil;
 import hu.neuron.database.entity.Product;
+import hu.neuron.warehouse.client.api.ProductVO;
 
 /**
  * Singleton class.
@@ -31,10 +32,10 @@ public class ProductService {
 	@GET
 	@Path("/getProducts")
 	@Produces(MediaType.APPLICATION_JSON)
-	public List<Product> getProduct(@Context HttpServletRequest request)
+	public List<ProductVO> getProduct(@Context HttpServletRequest request)
 			throws SQLException, ClassNotFoundException, UnsupportedEncodingException {
 
-		List<Product> products = new ArrayList<>();
+		List<ProductVO> products = new ArrayList<ProductVO>();
 
 		Connection conn = DatabaseUtil.getConnection();
 
@@ -44,13 +45,9 @@ public class ProductService {
 		List<Product> entityProducts = productService.findAll();
 
 		for (Product product : entityProducts) {
-			products.add(modelMapper.map(product, Product.class));
+			products.add(modelMapper.map(product, ProductVO.class));
 		}
-//		System.out.print("A products elemei: ");
-//		for (Product q : products) {
-//			System.out.println(q.getName());
-//		}
-
+		
 		return products;
 	}
 

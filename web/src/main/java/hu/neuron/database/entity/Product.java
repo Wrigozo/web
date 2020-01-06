@@ -4,7 +4,6 @@ import javax.persistence.*;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.Table;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -14,21 +13,21 @@ import lombok.ToString;
 @Setter
 @ToString
 @Entity
-@Table(name = "product")
 public class Product {
-
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 	
 	private String name;
-
+	
+	@JoinColumn
 	@ManyToOne
-	private String category;
+	private Category category;
 
+	@JoinColumn
 	@ManyToOne
-	private String unit;
+	private Unit unit;
 	
 	private int quantity;
 
@@ -38,10 +37,11 @@ public class Product {
 
 	private String description;
 
+	@SuppressWarnings("unused")
 	private Product() {
 	}
 
-	public Product(long id, String name, String category, String unit, int quantity, int purchasePrice, int salePrice, String description) {
+	public Product(long id, String name, Category category, Unit unit, int quantity, int purchasePrice, int salePrice, String description) {
 		this.id=id;
 		this.name = name;
 		this.category = category;

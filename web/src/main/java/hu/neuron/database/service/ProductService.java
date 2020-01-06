@@ -52,7 +52,7 @@ public class ProductService {
         productDao.closeCurrentSessionwithTransaction();
     }
  
-    public ProductDao productDao() {
+    public ProductDao getProductDao() {
         return productDao;
     }
 }

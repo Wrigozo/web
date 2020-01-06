@@ -10,6 +10,7 @@ import org.hibernate.cfg.Configuration;
 
 import hu.neuron.database.daoimpl.ProductDaoInterface;
 import hu.neuron.database.entity.Product;
+import hu.neuron.warehouse.client.api.ProductVO;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -83,6 +84,11 @@ public class ProductDao implements ProductDaoInterface<Product> {
 	public List<Product> findAll() {
 
 		List<Product> products = (List<Product>) getCurrentSession().createQuery("select p from Product p").list();
+		
+		System.out.println("All products in DAO:");
+		for (Product product : products) {
+			System.out.println(product);
+		}
 		return products;
 	}
 

@@ -17,13 +17,13 @@ function callServlet() {
 			str = ""
 			for (i = 0; i < result.length; i++) {
 				// console.log(result);
-				str = str.concat("<tr><td>" + result[i].id + "</td>" + "<td>"
-						+ result[i].name + "</td>" + "<td>"
-						+ result[i].category + "</td>" + "<td>"
-						+ result[i].unit + "</td>" + "<td>"
-						+ result[i].quantity + "</td>" + "<td>"
-						+ result[i].purchasePrice + "</td>" + "<td>"
-						+ result[i].salePrice + "</td>" + "<td>"
+				str = str.concat("<tr><td>" + result[i].id + "</td><td>"
+						+ result[i].name + "</td><td>"
+						+ result[i].category+ "</td><td>"
+						+ result[i].unit+ "</td><td>"
+						+ result[i].quantity + "</td><td>"
+						+ result[i].purchasePrice + "</td><td>"
+						+ result[i].salePrice + "</td><td>"
 						+ result[i].description + "</td><tr>");
 			}
 
