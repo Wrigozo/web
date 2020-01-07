@@ -8,9 +8,10 @@ import javax.servlet.http.HttpSession;
 
 import org.modelmapper.ModelMapper;
 
-import hu.neuron.database.service.ProductService;
+
 import hu.neuron.warehouse.client.api.ProductVO;
 import hu.neuron.database.entity.Product;
+import hu.neuron.database.repository.ProductDao;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -22,7 +23,7 @@ public class LoginServlet extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
 	
-	private ProductService productService = new ProductService();
+	private ProductDao productDao = new ProductDao();
 	
 	private ModelMapper modelMapper = new ModelMapper();
 
@@ -35,7 +36,7 @@ public class LoginServlet extends HttpServlet {
 
 		String p = req.getParameter("password");
 
-		List<Product> entityProducts = productService.findAll();
+		List<Product> entityProducts = productDao.findAll();
 
 		for (Product product : entityProducts) {
 			products.add(modelMapper.map(product, ProductVO.class));

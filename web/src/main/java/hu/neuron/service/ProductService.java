@@ -17,6 +17,7 @@ import org.modelmapper.ModelMapper;
 
 import hu.neuron.config.DatabaseUtil;
 import hu.neuron.database.entity.Product;
+import hu.neuron.database.repository.ProductDao;
 import hu.neuron.warehouse.client.api.ProductVO;
 
 /**
@@ -39,13 +40,20 @@ public class ProductService {
 
 		Connection conn = DatabaseUtil.getConnection();
 
-		hu.neuron.database.service.ProductService productService = new hu.neuron.database.service.ProductService();
+		ProductDao productDao = new ProductDao();
+		
 		ModelMapper modelMapper = new ModelMapper();
 
-		List<Product> entityProducts = productService.findAll();
-
+		List<Product> entityProducts = productDao.findAll();
+		
 		for (Product product : entityProducts) {
 			products.add(modelMapper.map(product, ProductVO.class));
+			System.out.print(product);
+		}
+		
+		System.out.print("VO:");
+		for(ProductVO product: products) {
+			System.out.print(product);
 		}
 		
 		return products;

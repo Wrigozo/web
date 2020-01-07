@@ -92,9 +92,10 @@
 				<artifactId>hibernate-jpa-2.1-api</artifactId>
 				<version>1.0.2.Final</version>
 			</dependency>
+<!-- 			ebben benne van a hibernate-core -->
 			<dependency>
 				<groupId>org.hibernate</groupId>
-				<artifactId>hibernate-core</artifactId>
+				<artifactId>hibernate-entitymanager</artifactId>
 				<version>5.4.10.Final</version>
 			</dependency>
 			<dependency>

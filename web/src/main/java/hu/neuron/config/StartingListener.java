@@ -40,7 +40,6 @@ public class StartingListener implements ServletContextListener {
 
 		// Host and Port are not available in mem database
 
-		// The actual database will be named 'warehouse'
 		server.setDatabaseName(0, databaseName);
 		//HsqlProperties props = new HsqlProperties();
 		//props.setProperty(key, value);
@@ -49,7 +48,6 @@ public class StartingListener implements ServletContextListener {
 		// myDb.properties and myDb.script
 		server.setDatabasePath(0, "mem:warehouse");
 
-		// Start the database!
 		server.start();
 
 		// connecting server

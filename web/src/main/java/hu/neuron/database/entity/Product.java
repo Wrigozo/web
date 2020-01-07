@@ -1,24 +1,33 @@
 package hu.neuron.database.entity;
 
+import java.io.Serializable;
+
 import javax.persistence.*;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
  
+
+@SuppressWarnings("serial")
+@NoArgsConstructor
+@AllArgsConstructor
 @Getter
 @Setter
 @ToString
 @Entity
-public class Product {
+public class Product implements Serializable{
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 	
+	@Column(unique = true)
 	private String name;
 	
 	@JoinColumn
@@ -36,20 +45,5 @@ public class Product {
 	private int salePrice;
 
 	private String description;
-
-	@SuppressWarnings("unused")
-	private Product() {
-	}
-
-	public Product(long id, String name, Category category, Unit unit, int quantity, int purchasePrice, int salePrice, String description) {
-		this.id=id;
-		this.name = name;
-		this.category = category;
-		this.unit = unit;
-		this.quantity=quantity;
-		this.purchasePrice = purchasePrice;
-		this.salePrice = salePrice;
-		this.description = description;
-	}
 	
 }
