@@ -1,7 +1,8 @@
-package hu.neuron.database.repository;
+package hu.neuron.database.repository.dao;
 
 
 import hu.neuron.database.entity.Unit;
+import hu.neuron.database.repository.GenericDao;
 import lombok.Getter;
 import lombok.Setter;
 

@@ -1,4 +1,4 @@
-package hu.neuron.database.daoimpl;
+package hu.neuron.database.repository;
 
 import java.util.List;
 import java.util.Optional;

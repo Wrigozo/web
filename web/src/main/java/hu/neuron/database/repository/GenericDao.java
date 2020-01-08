@@ -6,7 +6,7 @@ import java.util.Optional;
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 
-import hu.neuron.database.daoimpl.GenericDaoInterface;
+import hu.neuron.database.repository.GenericDaoInterface;
 import lombok.Getter;
 
 public abstract class GenericDao<T> implements GenericDaoInterface<T> {

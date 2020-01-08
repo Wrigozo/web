@@ -15,9 +15,14 @@ import javax.ws.rs.core.MediaType;
 
 import org.modelmapper.ModelMapper;
 
+import com.google.gson.reflect.TypeToken;
+
 import hu.neuron.config.DatabaseUtil;
+import hu.neuron.database.entity.Category;
 import hu.neuron.database.entity.Product;
-import hu.neuron.database.repository.ProductDao;
+import hu.neuron.database.repository.dao.CategoryDao;
+import hu.neuron.database.repository.dao.ProductDao;
+import hu.neuron.warehouse.client.api.CategoryVO;
 import hu.neuron.warehouse.client.api.ProductVO;
 
 /**
@@ -41,23 +46,43 @@ public class ProductService {
 		Connection conn = DatabaseUtil.getConnection();
 
 		ProductDao productDao = new ProductDao();
-		
+
 		ModelMapper modelMapper = new ModelMapper();
 
 		List<Product> entityProducts = productDao.findAll();
-		
-		System.out.print("Entity:");
+
 		for (Product product : entityProducts) {
 			products.add(modelMapper.map(product, ProductVO.class));
-			System.out.print(product);
 		}
-		
-		System.out.print("VO:");
-		
-			System.out.print(products);
-		
-		
+		System.out.println("Entity:");
+		System.out.println(entityProducts);
+		System.out.println("\n VO:");
+		System.out.println(products);
+
 		return products;
+	}
+
+	@SuppressWarnings("unchecked")
+	@GET
+	@Path("/getCategories")
+	@Produces(MediaType.APPLICATION_JSON)
+	public List<CategoryVO> getCategory(@Context HttpServletRequest request)
+			throws SQLException, ClassNotFoundException, UnsupportedEncodingException {
+
+		List<CategoryVO> categories = new ArrayList<CategoryVO>();
+		
+		CategoryDao categoryDao=new CategoryDao();
+		
+		ModelMapper modelMapper = new ModelMapper();
+		
+		List<Category> entityCategories = categoryDao.findAll();
+		
+		categories=modelMapper.map(entityCategories, new TypeToken<List<CategoryVO>>() {}.getType());
+		
+		System.out.print(categories);
+		
+		return categories;
+
 	}
 
 }

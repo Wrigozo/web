@@ -16,7 +16,7 @@ function callServlet() {
 			data = result;
 			str = ""
 			for (i = 0; i < result.length; i++) {
-				 console.log(result);
+				 console.log(result[i]);
 				str = str.concat("<tr><td>" + result[i].id + "</td><td>"
 						+ result[i].name + "</td><td>"
 						+ result[i].category.name+ "</td><td>"
@@ -38,3 +38,33 @@ function callServlet() {
 	});
 
 }
+
+$(function() {
+
+	$.ajax({
+		type : "GET",
+
+		url : "api/ProductService/getCategories",
+
+		datatype : "json",
+
+		success : function(result) {
+			str = ""
+			for (i = 0; i < result.length; i++) {
+				 console.log(result[i].name);
+				str = str.concat(
+						"<option value='result[i].name'>"+result[i].name+"</option>"
+				);
+			}
+
+			$("#categorylist").append(str);
+
+		},
+
+		error : function(e) {
+			console.log("Nem sikerült lekérni az adatokat!:(");
+		}
+
+	});
+
+})
