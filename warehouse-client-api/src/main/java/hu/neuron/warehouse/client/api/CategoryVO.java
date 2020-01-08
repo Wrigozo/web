@@ -18,13 +18,13 @@ public class CategoryVO implements Serializable{
 	
 	private long id;
 	
-	private String category;
+	private String name;
 	
 	public CategoryVO() {
 	}
 	
-	public CategoryVO(String category) {
-		this.category=category;
+	public CategoryVO(String name) {
+		this.name=name;
 	}
 
 

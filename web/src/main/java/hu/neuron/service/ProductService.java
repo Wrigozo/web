@@ -46,15 +46,16 @@ public class ProductService {
 
 		List<Product> entityProducts = productDao.findAll();
 		
+		System.out.print("Entity:");
 		for (Product product : entityProducts) {
 			products.add(modelMapper.map(product, ProductVO.class));
 			System.out.print(product);
 		}
 		
 		System.out.print("VO:");
-		for(ProductVO product: products) {
-			System.out.print(product);
-		}
+		
+			System.out.print(products);
+		
 		
 		return products;
 	}

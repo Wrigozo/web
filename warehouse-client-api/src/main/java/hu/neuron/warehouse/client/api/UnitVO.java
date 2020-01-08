@@ -18,14 +18,14 @@ public class UnitVO implements Serializable{
 	
 	private long id;
 	
-	private String unit;
+	private String name;
 	
 	public UnitVO() {
 		
 	}
 	
-	public UnitVO(String unit) {
-		this.unit=unit;
+	public UnitVO(String name) {
+		this.name=name;
 	}
 
 	

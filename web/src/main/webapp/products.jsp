@@ -11,8 +11,8 @@
 			<tr>
 				<td class="id"><c:out value="${item.id}" /></td>
 				<td class="name"><c:out value="${item.name}" /></td>
-				<td class="category"><c:out value="${item.category.category}" /></td>
-				<td class="unit"><c:out value="${item.unit.unit}" /></td>
+				<td class="category"><c:out value="${item.category.name}" /></td>
+				<td class="unit"><c:out value="${item.unit.name}" /></td>
 				<td class="quantity"><c:out value="${item.quantity}" /></td>
 				<td class="purchasePrice"><c:out value="${item.purchasePrice}" /></td>
 				<td class="salePrice"><c:out value="${item.salePrice}" /></td>
