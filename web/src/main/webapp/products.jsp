@@ -20,8 +20,9 @@
 </head>
 <body>
 	<div class="view">
-		<div class="bd-example">
-			<form>
+		<form>
+			<div class="bd-example">
+			
 				<input type="search">
 			
 				<div class="btn-group">
@@ -29,42 +30,54 @@
 				</div>
 				<div class="btn-group">
 					<select class="form-control">
+						<option value="all" selected><c:out value="összes" /></option>
 						<c:forEach items="${sessionScope.units}" var="item">
 			  				<option value="<c:out value="${item.name}" />"><c:out value="${item.name}" /></option>
 			  			</c:forEach>
 					</select>
 				</div>
 				
-				<div class="btn-group">
-					<select class="form-control">
+				<div class="btn-group" >
+				<input type="hidden" id="currentPage" value="1">
+					<select class="form-control" id="recordsPerPage">
+					  <option selected>5</option>
 					  <option>10</option>
 					  <option>20</option>
 					  <option>50</option>
 					</select>
-		
 				</div>
 				
 				<button class="btn btn-primary" id="refreshbutton" type="submit" onclick="callServlet()">Refresh</button>
-			</form>
-		</div>
-		<br>
-		<table class="table table-hover table-striped table-responsive-lg">
-			<c:forEach items="${sessionScope.products}" var="item">
+			
+			</div>
+			<br>
+			<table class="table table-hover table-striped table-responsive-lg">
 				<tr>
-					<td class="id"><c:out value="${item.id}" /></td>
-					<td class="name"><c:out value="${item.name}" /></td>
-					<td class="category"><c:out value="${item.category.name}" /></td>
-					<td class="unit"><c:out value="${item.unit.name}" /></td>
-					<td class="quantity"><c:out value="${item.quantity}" /></td>
-					<td class="purchasePrice"><c:out value="${item.purchasePrice}" /></td>
-					<td class="salePrice"><c:out value="${item.salePrice}" /></td>
-					<td class="description"><c:out value="${item.description}" /></td>
-				</tr>
-			</c:forEach>
-		</table>
-		<button class="btn btn-primary" id="Previous" type="submit" onclick="">Previous</button>
-		<button class="btn btn-primary" id="Next" type="submit" onclick="">Next</button>
-	
+					<th>ID</th>
+		            <th>Name</th>
+		            <th>Category</th>
+		            <th>Unit</th>
+		            <th>Quantity</th>
+		            <th>Purchase Price</th>
+		            <th>Sale Price</th>
+		            <th>Description</th>
+	        	</tr>
+				<c:forEach items="${sessionScope.products}" var="item">
+					<tr>
+						<td class="id"><c:out value="${item.id}" /></td>
+						<td class="name"><c:out value="${item.name}" /></td>
+						<td class="category"><c:out value="${item.category.name}" /></td>
+						<td class="unit"><c:out value="${item.unit.name}" /></td>
+						<td class="quantity"><c:out value="${item.quantity}" /></td>
+						<td class="purchasePrice"><c:out value="${item.purchasePrice}" /></td>
+						<td class="salePrice"><c:out value="${item.salePrice}" /></td>
+						<td class="description"><c:out value="${item.description}" /></td>
+					</tr>
+				</c:forEach>
+			</table>
+			<button class="btn btn-primary" id="Previous" type="submit" onclick="previous()">Previous</button>
+			<button class="btn btn-primary" id="Next" type="submit" onclick="next()">Next</button>
+		</form>
 	</div>
 	<script
 		src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>

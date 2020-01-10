@@ -53,10 +53,12 @@ insert into category(name) values('csoki');
 insert into category(name) values('sajt');
 insert into category(name) values('ecet');
 insert into category(name) values('chips');
+insert into category(name) values('mosógép');
 
 
 insert into unit(name) values('liter');
 insert into unit(name) values('gramm');
+insert into unit(name) values('kilógramm');
 
 select * from category;
 
@@ -68,5 +70,12 @@ insert into Product(name, category_id, unit_id, quantity, purchasePrice, salePri
 insert into Product(name, category_id, unit_id, quantity, purchasePrice, salePrice, description) values('Sissi1', 1, 1, 10, 100, 200, 'nagyon finom');
 insert into Product(name, category_id, unit_id, quantity, purchasePrice, salePrice, description) values('Sissi2', 1, 1, 5, 100, 200, 'nagyon finom');
 insert into Product(name, category_id, unit_id, quantity, purchasePrice, salePrice, description) values('Sissi3', 1, 1, 7, 100, 200, 'nagyon finom');
+insert into Product(name, category_id, unit_id, quantity, purchasePrice, salePrice, description) values('Whirlpool', 8, 3, 7, 50000, 71900, 'jó minőségű és olcsó');
+insert into Product(name, category_id, unit_id, quantity, purchasePrice, salePrice, description) values('AEG', 8, 3, 17, 40000, 64900, 'olcsó');
+insert into Product(name, category_id, unit_id, quantity, purchasePrice, salePrice, description) values('Indesit', 8, 3, 3, 100000,  146900, 'jó minőségű');
+insert into Product(name, category_id, unit_id, quantity, purchasePrice, salePrice, description) values('Elektrolux', 8, 3, 10, 80000, 124900, 'közepes árkategória');
+insert into Product(name, category_id, unit_id, quantity, purchasePrice, salePrice, description) values('Samsung', 8, 3, 9, 80000, 124900, 'jó minőségű');
+insert into Product(name, category_id, unit_id, quantity, purchasePrice, salePrice, description) values('Zanussi', 8, 3, 27, 100000, 199900, 'jó minőségű');
+
 
 select * from  product;

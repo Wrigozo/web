@@ -44,7 +44,7 @@ public class LoginServlet extends HttpServlet {
 		List<ProductVO> products = new ArrayList<>();
 		List<UnitVO> units = new ArrayList<>();
 
-		List<Product> entityProducts = productDao.findAll();
+		List<Product> entityProducts = productDao.findAll(1,5);
 		List<Unit> entityUnits = unitDao.findAll();
 
 		for (Product product : entityProducts) {
@@ -59,7 +59,7 @@ public class LoginServlet extends HttpServlet {
 
 		if (n != null && p != null) {
 			if (n.equals("admin") && p.equals("password")) {
-
+				
 				session.setAttribute("authenticated", true);
 				session.setAttribute("products", products);
 				session.setAttribute("units", units);

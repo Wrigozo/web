@@ -1,11 +1,19 @@
 function callServlet() {
 
 	event.preventDefault();
+	
+	var currentpage = $('#currentPage').val();
+	var recordsperpage = $('#recordsPerPage').val();
 
 	$.ajax({
 		type : "GET",
 
 		url : "api/ProductService/getProducts",
+		
+		data : {
+			currentPage : currentpage,
+			recordsPerPage : recordsperpage
+		},
 
 		datatype : "json",
 
@@ -40,6 +48,10 @@ function callServlet() {
 }
 
 $(function() {
+	
+	var currentpage = $('#currentPage').val();
+	var recordsperpage = $('#recordsPerPage').val();
+	console.log("currentpage "+currentpage+" resocrspage "+recordsperpage);
 
 	$.ajax({
 		type : "GET",
@@ -47,9 +59,15 @@ $(function() {
 		url : "api/ProductService/getCategories",
 
 		datatype : "json",
+		
+		data : {
+			currentPage : currentpage,
+			recordsPerPage : recordsperpage
+		},
 
 		success : function(result) {
-			str = ""
+			console.log("lefutottam");
+			str = "<option value='all' selected>összes</option>"
 			for (i = 0; i < result.length; i++) {
 				 console.log(result[i].name);
 				str = str.concat(
@@ -68,3 +86,29 @@ $(function() {
 	});
 
 })
+
+function previous() {
+	
+	var currentpage = $('#currentPage').val();
+	
+	if(currentpage>1){
+		$('#currentPage').val(currentpage*1-1);
+		callServlet();
+	}
+
+}
+
+function next() {
+
+	event.preventDefault();
+	
+	var currentpage = $('#currentPage').val();
+	
+	
+		$('#currentPage').val(currentpage*1+1);
+	
+
+	callServlet();
+
+}
+

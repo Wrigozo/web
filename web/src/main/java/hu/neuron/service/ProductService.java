@@ -34,12 +34,17 @@ import hu.neuron.warehouse.client.api.ProductVO;
 @Path("/ProductService")
 public class ProductService {
 
-	@SuppressWarnings("unchecked")
 	@GET
 	@Path("/getProducts")
 	@Produces(MediaType.APPLICATION_JSON)
 	public List<ProductVO> getProduct(@Context HttpServletRequest request)
 			throws SQLException, ClassNotFoundException, UnsupportedEncodingException {
+
+		int currentPage = Integer.parseInt(request.getParameter("currentPage"));
+		int recordsPerPage = Integer.parseInt(request.getParameter("recordsPerPage"));
+
+		System.out.println("\ncurrentpage" + currentPage);
+		System.out.println("recordsPerPage" + recordsPerPage);
 
 		List<ProductVO> products = new ArrayList<ProductVO>();
 
@@ -49,15 +54,30 @@ public class ProductService {
 
 		ModelMapper modelMapper = new ModelMapper();
 
-		List<Product> entityProducts = productDao.findAll();
+		List<Product> entityProducts = productDao.findAll(currentPage, recordsPerPage);
 
 		for (Product product : entityProducts) {
 			products.add(modelMapper.map(product, ProductVO.class));
 		}
+
 		System.out.println("Entity:");
 		System.out.println(entityProducts);
 		System.out.println("\n VO:");
 		System.out.println(products);
+
+		request.setAttribute("countries", products);
+
+		int rows = productDao.getNumberOfRows();
+
+		int nOfPages = rows / recordsPerPage;
+
+		if (nOfPages % recordsPerPage > 0) {
+			nOfPages++;
+		}
+
+		request.setAttribute("noOfPages", nOfPages);
+		request.setAttribute("currentPage", currentPage);
+		request.setAttribute("recordsPerPage", recordsPerPage);
 
 		return products;
 	}
@@ -86,3 +106,16 @@ public class ProductService {
 	}
 
 }
+
+//public List<Product> getByMultipleParameter(Category category, Unit unit, int itemCount, int page, String search) {
+//	return em.createQuery(
+//			"SELECT p FROM Product p WHERE (:cat is null or p.category = :cat) AND (:unit is null or p.unit = :unit) AND (:search is null or p.name LIKE CONCAT('%', :search,'%'))",
+//			Product.class).setParameter("cat", category).setParameter("unit", unit).setParameter("search", search)
+//			.setMaxResults(itemCount).setFirstResult(itemCount * (page - 1)).getResultList();
+	
+	
+	
+	
+	
+	
+	
