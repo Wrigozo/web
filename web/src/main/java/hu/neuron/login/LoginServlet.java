@@ -44,7 +44,10 @@ public class LoginServlet extends HttpServlet {
 		List<ProductVO> products = new ArrayList<>();
 		List<UnitVO> units = new ArrayList<>();
 
-		List<Product> entityProducts = productDao.findAll(1,5);
+		int recordsPerPage=5;
+		int currentPage=1;
+		
+		List<Product> entityProducts = productDao.findAll(currentPage,recordsPerPage);
 		List<Unit> entityUnits = unitDao.findAll();
 
 		for (Product product : entityProducts) {
@@ -52,6 +55,14 @@ public class LoginServlet extends HttpServlet {
 		}
 		
 		units=modelMapper.map(entityUnits, new TypeToken<List<UnitVO>>() {}.getType());
+		
+		int rows = productDao.getNumberOfRows();
+
+		int nOfPages = rows / recordsPerPage;
+
+		if (nOfPages % recordsPerPage > 0) {
+			nOfPages++;
+		}
 
 		//System.out.print(products);
 
@@ -63,7 +74,9 @@ public class LoginServlet extends HttpServlet {
 				session.setAttribute("authenticated", true);
 				session.setAttribute("products", products);
 				session.setAttribute("units", units);
-
+				session.setAttribute("nOfPages", nOfPages);
+				session.setAttribute("recordsPerPage", recordsPerPage);
+				session.setAttribute("currentPage", currentPage);
 				res.sendRedirect("/web/secured/profil.html");
 
 			} else {

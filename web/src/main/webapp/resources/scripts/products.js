@@ -44,29 +44,21 @@ function callServlet() {
 		}
 
 	});
+	
+	paginator();
 
 }
 
 $(function() {
 	
-	var currentpage = $('#currentPage').val();
-	var recordsperpage = $('#recordsPerPage').val();
-	console.log("currentpage "+currentpage+" resocrspage "+recordsperpage);
-
 	$.ajax({
 		type : "GET",
 
 		url : "api/ProductService/getCategories",
 
 		datatype : "json",
-		
-		data : {
-			currentPage : currentpage,
-			recordsPerPage : recordsperpage
-		},
 
 		success : function(result) {
-			console.log("lefutottam");
 			str = "<option value='all' selected>összes</option>"
 			for (i = 0; i < result.length; i++) {
 				 console.log(result[i].name);
@@ -84,10 +76,14 @@ $(function() {
 		}
 
 	});
+	
+	paginator();
 
 })
 
 function previous() {
+	
+	event.preventDefault();
 	
 	var currentpage = $('#currentPage').val();
 	
@@ -103,12 +99,63 @@ function next() {
 	event.preventDefault();
 	
 	var currentpage = $('#currentPage').val();
-	
+		
 	
 		$('#currentPage').val(currentpage*1+1);
 	
 
 	callServlet();
-
 }
+
+function paginator() {
+	
+	var currentpage = $('#currentPage').val();
+	var recordsperpage = $('#recordsPerPage').val();
+	
+	$.ajax({
+		type : "GET",
+
+		url : "api/ProductService/getNumberOfPages",
+
+		datatype : "json",
+		
+		data : {
+			currentPage : currentpage,
+			recordsPerPage : recordsperpage
+		},
+
+		success : function(result) {
+			
+			console.log("paginator");
+			
+			buttons="";
+			
+			for (i = 1; i < result+1; i++) {
+				 //console.log($("form").find("#paginator"));
+				 $("form").find("#paginator").remove();
+				 buttons = buttons.concat("<span id='paginator'>");
+				 buttons = buttons.concat(
+						" <button class='btn btn-primary "+i+"' type='submit'>"+i+"</button>\n"
+				 );
+				 buttons = buttons.concat("</span>");
+				 //console.log(i);
+				
+				 
+			}
+			 console.log(currentpage);
+			
+			$("#Previous").after(buttons);
+			
+			
+
+		},
+
+		error : function(e) {
+			console.log("Nem sikerült lekérni az adatokat!:(");
+		}
+
+	});
+}
+
+
 

@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
@@ -74,14 +75,41 @@ public class ProductService {
 		if (nOfPages % recordsPerPage > 0) {
 			nOfPages++;
 		}
-
-		request.setAttribute("noOfPages", nOfPages);
-		request.setAttribute("currentPage", currentPage);
-		request.setAttribute("recordsPerPage", recordsPerPage);
+		System.out.print("noOfPages "+ nOfPages+" currentPage "+ currentPage+" recordsPerPage "+ recordsPerPage);
+		HttpSession session= request.getSession();
+		
+		session.setAttribute("noOfPages", nOfPages);
+		session.setAttribute("recordsPerPage", recordsPerPage);
+		session.setAttribute("currentPage", currentPage);
 
 		return products;
 	}
 
+	@SuppressWarnings("unchecked")
+	@GET
+	@Path("/getNumberOfPages")
+	@Produces(MediaType.APPLICATION_JSON)
+	public int getNumberOfPages(@Context HttpServletRequest request)
+			throws SQLException, ClassNotFoundException, UnsupportedEncodingException {
+		
+		int currentPage = Integer.parseInt(request.getParameter("currentPage"));
+		int recordsPerPage = Integer.parseInt(request.getParameter("recordsPerPage"));
+
+		ProductDao productDao = new ProductDao();
+		
+		int rows = productDao.getNumberOfRows();
+		
+		int nOfPages = rows / recordsPerPage;
+		
+		if (nOfPages % recordsPerPage > 0) {
+			nOfPages++;
+		}
+		System.out.print("noOfPages "+ nOfPages+" currentPage "+ currentPage+" recordsPerPage "+ recordsPerPage);
+		
+		return nOfPages;
+
+	}
+	
 	@SuppressWarnings("unchecked")
 	@GET
 	@Path("/getCategories")
