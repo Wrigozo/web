@@ -53,7 +53,7 @@
 			<br>
 			<table class="table table-hover table-striped table-responsive-lg">
 				<tr>
-					<th>ID</th>
+					
 		            <th>Name</th>
 		            <th>Category</th>
 		            <th>Unit</th>
@@ -64,7 +64,7 @@
 	        	</tr>
 				<c:forEach items="${sessionScope.products}" var="item">
 					<tr>
-						<td class="id"><c:out value="${item.id}" /></td>
+						
 						<td class="name"><c:out value="${item.name}" /></td>
 						<td class="category"><c:out value="${item.category.name}" /></td>
 						<td class="unit"><c:out value="${item.unit.name}" /></td>
@@ -75,8 +75,10 @@
 					</tr>
 				</c:forEach>
 			</table>
+			<button class="btn btn-primary" type="submit" onclick="first()">First</button>
 			<button class="btn btn-primary" id="Previous" type="submit" onclick="previous()">Previous</button>
 			<button class="btn btn-primary" id="Next" type="submit" onclick="next()">Next</button>
+			<button class="btn btn-primary" type="submit" onclick="last()">Last</button>
 		</form>
 	</div>
 	<script

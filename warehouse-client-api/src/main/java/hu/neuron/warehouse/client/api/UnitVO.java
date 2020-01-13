@@ -6,17 +6,15 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
+@SuppressWarnings("serial")
 @Getter
 @Setter
 @ToString
 public class UnitVO implements Serializable{
 
 	/**
-	 * 
+	 * Represents a unit value object.
 	 */
-	private static final long serialVersionUID = 1L;
-	
-	private long id;
 	
 	private String name;
 	

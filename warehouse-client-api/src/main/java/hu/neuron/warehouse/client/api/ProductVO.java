@@ -2,21 +2,21 @@ package hu.neuron.warehouse.client.api;
 
 import java.io.Serializable;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
+@SuppressWarnings("serial")
 @Getter
 @Setter
 @ToString
+@AllArgsConstructor
 public class ProductVO implements Serializable {
 
 	/**
-	 * 
+	 * Represents a product value object.
 	 */
-	private static final long serialVersionUID = 1L;
-
-	private long id;
 
 	private String name;
 
@@ -35,21 +35,9 @@ public class ProductVO implements Serializable {
 	public ProductVO() {
 	}
 
-	public ProductVO(int id, String name, CategoryVO category, UnitVO unit, int quantity, int purchasePrice,
-			int salePrice, String description) {
-		this.id = id;
-		this.name = name;
-		this.category = category;
-		this.unit = unit;
-		this.quantity = quantity;
-		this.purchasePrice = purchasePrice;
-		this.salePrice = salePrice;
-		this.description = description;
-	}
-
-	public ProductVO(int id, String name, String category, String unit, int quantity, int purchasePrice, int salePrice,
+	public ProductVO(String name, String category, String unit, int quantity, int purchasePrice, int salePrice,
 			String description) {
-		this.id = id;
+		
 		this.name = name;
 		this.category = new CategoryVO(category);
 		this.unit = new UnitVO(unit);
