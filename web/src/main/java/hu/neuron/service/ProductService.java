@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 import javax.ws.rs.GET;
 import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
@@ -22,11 +21,12 @@ import com.google.gson.reflect.TypeToken;
 import hu.neuron.config.DatabaseUtil;
 import hu.neuron.database.entity.Category;
 import hu.neuron.database.entity.Product;
+import hu.neuron.database.entity.Unit;
 import hu.neuron.database.repository.dao.CategoryDao;
 import hu.neuron.database.repository.dao.ProductDao;
+import hu.neuron.database.repository.dao.UnitDao;
 import hu.neuron.warehouse.client.api.CategoryVO;
 import hu.neuron.warehouse.client.api.ProductVO;
-import hu.neuron.warehouse.client.api.UnitVO;
 
 /**
  * Singleton class.
@@ -43,45 +43,47 @@ public class ProductService {
 	public List<ProductVO> getProduct(@Context HttpServletRequest request)
 			throws SQLException, ClassNotFoundException, UnsupportedEncodingException {
 
+		Connection conn = DatabaseUtil.getConnection();
+		
+		ProductDao productDao = new ProductDao();
+		CategoryDao categoryDao=new CategoryDao();
+		UnitDao unitDao=new UnitDao();
+		ModelMapper modelMapper = new ModelMapper();
+		
+		Category category=categoryDao.findCategoryByName(request.getParameter("category"));
+		Unit unit=unitDao.findUnitByName(request.getParameter("unit"));
+		String search=request.getParameter("search");
 		int currentPage = Integer.parseInt(request.getParameter("currentPage"));
 		int recordsPerPage = Integer.parseInt(request.getParameter("recordsPerPage"));
 
-		System.out.println("\ncurrentpage" + currentPage);
-		System.out.println("recordsPerPage" + recordsPerPage);
+		System.out.println("\ncurrentpage: " + currentPage);
+		System.out.println("recordsPerPage: " + recordsPerPage);
+		System.out.println("search: " + search);
+		System.out.println("category: " + request.getParameter("category"));
+		System.out.println("unit: " + request.getParameter("unit"));
 
 		List<ProductVO> products = new ArrayList<ProductVO>();
+		List<Product> entityProducts = productDao.getByMultipleParameter(category, unit, recordsPerPage, currentPage, search);
 
-		Connection conn = DatabaseUtil.getConnection();
-
-		ProductDao productDao = new ProductDao();
-
-		ModelMapper modelMapper = new ModelMapper();
-
-		int rows = productDao.getNumberOfRows();
+		int rows = entityProducts.size();
 
 		int nOfPages = rows / recordsPerPage;
 
+		// a két if sorrendje fontos
 		if (nOfPages % recordsPerPage > 0) {
 			nOfPages++;
 		}
 
 		if (currentPage > nOfPages) {
-			List<Product> entityProducts = productDao.findAll(1, recordsPerPage);
-
-			for (Product product : entityProducts) {
-				products.add(modelMapper.map(product, ProductVO.class));
-			}
-
-			return products;
+			currentPage=1;
 		}
-
-		List<Product> entityProducts = productDao.findAll(currentPage, recordsPerPage);
+		
 
 		for (Product product : entityProducts) {
 			products.add(modelMapper.map(product, ProductVO.class));
 		}
 
-		System.out.print("noOfPages " + nOfPages + " currentPage " + currentPage + " recordsPerPage " + recordsPerPage);
+		System.out.print("rows: "+rows+"noOfPages " + nOfPages + " currentPage " + currentPage + " recordsPerPage " + recordsPerPage);
 
 		return products;
 	}
@@ -156,8 +158,3 @@ public class ProductService {
 	}
 }
 
-//public List<Product> getByMultipleParameter(Category category, Unit unit, int itemCount, int page, String search) {
-//	return em.createQuery(
-//			"SELECT p FROM Product p WHERE (:cat is null or p.category = :cat) AND (:unit is null or p.unit = :unit) AND (:search is null or p.name LIKE CONCAT('%', :search,'%'))",
-//			Product.class).setParameter("cat", category).setParameter("unit", unit).setParameter("search", search)
-//			.setMaxResults(itemCount).setFirstResult(itemCount * (page - 1)).getResultList();

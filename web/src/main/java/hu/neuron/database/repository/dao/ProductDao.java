@@ -5,7 +5,9 @@ import java.util.Optional;
 
 import javax.persistence.TypedQuery;
 
+import hu.neuron.database.entity.Category;
 import hu.neuron.database.entity.Product;
+import hu.neuron.database.entity.Unit;
 import hu.neuron.database.repository.GenericDao;
 import lombok.Getter;
 import lombok.Setter;
@@ -53,5 +55,11 @@ public class ProductDao extends GenericDao<Product> {
 			
 		return (int)numOfRows;
 	}
-
+	
+	public List<Product> getByMultipleParameter(Category category, Unit unit, int recordsPerPage, int currentPage, String search) {
+	return entityManager.createQuery(
+			"SELECT p FROM Product p WHERE (:category is null or p.category = :category) AND (:unit is null or p.unit = :unit) AND (:search is null or p.name LIKE CONCAT('%', :search,'%'))",
+			Product.class).setParameter("category", category).setParameter("unit", unit).setParameter("search", search)
+			.setMaxResults(recordsPerPage).setFirstResult(recordsPerPage * (currentPage - 1)).getResultList();
+	}
 }

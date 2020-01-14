@@ -2,8 +2,15 @@ function callServlet() {
 
 	event.preventDefault();
 	
+	var search = $('#search').val();
+	var category = $('#category').val();
+	var unit = $('#unit').val();
 	var currentpage = $('#currentPage').val();
 	var recordsperpage = $('#recordsPerPage').val();
+	
+	console.log("search: "+search);
+	console.log("category: "+category);
+	console.log("unit: "+unit);
 	
 	$.ajax({
 		type : "GET",
@@ -11,6 +18,9 @@ function callServlet() {
 		url : "api/ProductService/getProducts",
 		
 		data : {
+			search : search,
+			category : category,
+			unit : unit,
 			currentPage : currentpage,
 			recordsPerPage : recordsperpage
 		},
@@ -58,15 +68,17 @@ $(function() {
 		datatype : "json",
 
 		success : function(result) {
-			str = "<option value='all' selected>összes</option>"
+			str = "<option value='' selected>---</option>"
 			for (i = 0; i < result.length; i++) {
-				 console.log(result[i].name);
 				str = str.concat(
-						"<option value='result[i].name'>"+result[i].name+"</option>"
+						"<option id='"+result[i].name+"' value='"+result[i].name+"'></option>"
 				);
 			}
 
-			$("#categorylist").append(str);
+			$("#category").append(str);
+			for (i = 0; i < result.length; i++) {
+				$('#'+result[i].name).html(result[i].name);
+			}
 			$('#currentPage').val(1);
 			paginator();
 
@@ -97,6 +109,9 @@ function next() {
 
 	event.preventDefault();
 	
+	var search = $('#search').val();
+	var category = $('#category').val();
+	var unit = $('#unit').val();
 	var currentpage = $('#currentPage').val();
 	var recordsperpage = $('#recordsPerPage').val();
 		
@@ -130,6 +145,9 @@ function paginator() {
 	
 	event.preventDefault();
 	
+	var search = $('#search').val();
+	var category = $('#category').val();
+	var unit = $('#unit').val();
 	var currentpage = $('#currentPage').val();
 	var recordsperpage = $('#recordsPerPage').val();
 	
@@ -196,6 +214,9 @@ function last() {
 	
 	event.preventDefault();
 	
+	var search = $('#search').val();
+	var category = $('#category').val();
+	var unit = $('#unit').val();
 	var currentpage = $('#currentPage').val();
 	var recordsperpage = $('#recordsPerPage').val();
 	

@@ -9,8 +9,6 @@ import javax.servlet.http.HttpSession;
 import org.modelmapper.ModelMapper;
 
 import com.google.gson.reflect.TypeToken;
-
-import hu.neuron.warehouse.client.api.CategoryVO;
 import hu.neuron.warehouse.client.api.ProductVO;
 import hu.neuron.warehouse.client.api.UnitVO;
 import hu.neuron.database.entity.Product;

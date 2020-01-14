@@ -23,14 +23,14 @@
 		<form>
 			<div class="bd-example">
 			
-				<input type="search">
+				<input id="search" type="search" placeholder="Search...">
 			
 				<div class="btn-group">
-				<select class="form-control" id="categorylist"></select>
+				<select class="form-control" id="category"></select>
 				</div>
 				<div class="btn-group">
-					<select class="form-control">
-						<option value="all" selected><c:out value="összes" /></option>
+					<select id="unit" class="form-control">
+						<option value="" selected><c:out value="---" /></option>
 						<c:forEach items="${sessionScope.units}" var="item">
 			  				<option value="<c:out value="${item.name}" />"><c:out value="${item.name}" /></option>
 			  			</c:forEach>
@@ -53,7 +53,6 @@
 			<br>
 			<table class="table table-hover table-striped table-responsive-lg">
 				<tr>
-					
 		            <th>Name</th>
 		            <th>Category</th>
 		            <th>Unit</th>
@@ -64,7 +63,6 @@
 	        	</tr>
 				<c:forEach items="${sessionScope.products}" var="item">
 					<tr>
-						
 						<td class="name"><c:out value="${item.name}" /></td>
 						<td class="category"><c:out value="${item.category.name}" /></td>
 						<td class="unit"><c:out value="${item.unit.name}" /></td>
