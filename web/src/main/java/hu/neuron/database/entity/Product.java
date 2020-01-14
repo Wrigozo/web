@@ -31,11 +31,11 @@ public class Product implements Serializable{
 	private String name;
 	
 	@JoinColumn
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.ALL)
 	private Category category;
 
 	@JoinColumn
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.ALL)
 	private Unit unit;
 	
 	private int quantity;

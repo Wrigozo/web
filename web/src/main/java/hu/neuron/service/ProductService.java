@@ -141,25 +141,16 @@ public class ProductService {
 	@PUT
 	@Path("/addProducts")
 	@Produces(MediaType.APPLICATION_JSON)
-	public Product putProduct(@Context HttpServletRequest request)
+	public Product putProduct(ProductVO productVO)
 			throws SQLException, ClassNotFoundException, UnsupportedEncodingException {
 
-		String name = request.getParameter("name");
-		CategoryVO category=new CategoryVO(request.getParameter("category"));
-		UnitVO unit=new UnitVO(request.getParameter("unit"));
-		int quantity=Integer.parseInt(request.getParameter("quantity"));
-		int purchasePrice=Integer.parseInt(request.getParameter("purchasePrice"));
-		int salePrice=Integer.parseInt(request.getParameter("salePrice"));
-		String description=request.getParameter("description");
-
-		ProductVO productVO = new ProductVO(name, category, unit, quantity, purchasePrice, salePrice, description);
 		ModelMapper modelMapper = new ModelMapper();
 
 		Product product = modelMapper.map(productVO, Product.class);
-
+		System.out.print(productVO);
 		ProductDao productDao = new ProductDao();
 		productDao.save(product);
-
+		
 		return product;
 
 	}
