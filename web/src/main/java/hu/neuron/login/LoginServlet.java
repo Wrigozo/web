@@ -55,14 +55,14 @@ public class LoginServlet extends HttpServlet {
 		units=modelMapper.map(entityUnits, new TypeToken<List<UnitVO>>() {}.getType());
 		
 		int rows = productDao.getNumberOfRows();
-
+		System.out.println("\n\nnumOfRows"+rows+"\n");
 		int nOfPages = rows / recordsPerPage;
 
 		if (nOfPages % recordsPerPage > 0) {
 			nOfPages++;
 		}
 
-		//System.out.print(products);
+		System.out.print(nOfPages);
 
 		HttpSession session = req.getSession(true);
 

@@ -8,9 +8,8 @@ function callServlet() {
 	var currentpage = $('#currentPage').val();
 	var recordsperpage = $('#recordsPerPage').val();
 	
-	console.log("search: "+search);
-	console.log("category: "+category);
-	console.log("unit: "+unit);
+	console.log("callservlet");
+	console.log("currentPage: "+currentpage);
 	
 	$.ajax({
 		type : "GET",
@@ -115,6 +114,8 @@ function next() {
 	var currentpage = $('#currentPage').val();
 	var recordsperpage = $('#recordsPerPage').val();
 		
+	console.log("next");
+
 	$.ajax({
 		type : "GET",
 
@@ -123,6 +124,9 @@ function next() {
 		datatype : "json",
 		
 		data : {
+			search : search,
+			category : category,
+			unit : unit,
 			currentPage : currentpage,
 			recordsPerPage : recordsperpage
 		},
@@ -151,7 +155,8 @@ function paginator() {
 	var currentpage = $('#currentPage').val();
 	var recordsperpage = $('#recordsPerPage').val();
 	
-	console.log(currentpage+" "+recordsperpage);
+	console.log("paginator");
+	console.log("currentpage"+currentpage);
 	
 	$.ajax({
 		type : "GET",
@@ -161,6 +166,9 @@ function paginator() {
 		datatype : "json",
 		
 		data : {
+			search : search,
+			category : category,
+			unit : unit,
 			currentPage : currentpage,
 			recordsPerPage : recordsperpage
 		},
@@ -170,7 +178,6 @@ function paginator() {
 			buttons="";
 			$("span").remove();
 			for (i = 1; i < result+1; i++) {
-				console.log(i);
 				 
 				buttons = buttons.concat("<span id='paginator'>");
 				buttons = buttons.concat(
@@ -220,6 +227,8 @@ function last() {
 	var currentpage = $('#currentPage').val();
 	var recordsperpage = $('#recordsPerPage').val();
 	
+	console.log("last");
+	
 	$.ajax({
 		type : "GET",
 
@@ -228,6 +237,9 @@ function last() {
 		datatype : "json",
 		
 		data : {
+			search : search,
+			category : category,
+			unit : unit,
 			currentPage : currentpage,
 			recordsPerPage : recordsperpage
 		},

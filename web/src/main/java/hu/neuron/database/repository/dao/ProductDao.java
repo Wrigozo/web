@@ -3,6 +3,7 @@ package hu.neuron.database.repository.dao;
 import java.util.List;
 import java.util.Optional;
 
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
 import hu.neuron.database.entity.Category;
@@ -42,16 +43,25 @@ public class ProductDao extends GenericDao<Product> {
 		return entity != null ? Optional.of(entity) : Optional.empty();
 	}
 
+	public int getNumberOfRows(Category category, Unit unit, String search) {
+
+		long row=entityManager.createQuery(
+				"SELECT COUNT(Id) FROM Product p WHERE (:category is null or p.category = :category) AND (:unit is null or p.unit = :unit) AND (:search is null or p.name LIKE CONCAT('%', :search,'%'))",
+				Long.class).setParameter("category", category).setParameter("unit", unit).setParameter("search", search).getSingleResult();
+			
+			//System.out.print("numOfRows"+numOfRows);
+			
+		return (int)row;
+	}
+	
 	public int getNumberOfRows() {
 
 		long numOfRows = 4;
 
-		
-			String sql = "SELECT COUNT(Id) FROM Product";
+			String sql = "SELECT COUNT(Id)FROM Product ";
 
 			numOfRows = entityManager.createQuery(sql, Long.class).getSingleResult();
-
-			System.out.print(entityManager.createQuery(sql, Long.class).getSingleResult().getClass());
+			
 			
 		return (int)numOfRows;
 	}

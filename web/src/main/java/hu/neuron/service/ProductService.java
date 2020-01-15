@@ -56,21 +56,15 @@ public class ProductService {
 		int currentPage = Integer.parseInt(request.getParameter("currentPage"));
 		int recordsPerPage = Integer.parseInt(request.getParameter("recordsPerPage"));
 
-		System.out.println("\ncurrentpage: " + currentPage);
-		System.out.println("recordsPerPage: " + recordsPerPage);
-		System.out.println("search: " + search);
-		System.out.println("category: " + request.getParameter("category"));
-		System.out.println("unit: " + request.getParameter("unit"));
-
 		List<ProductVO> products = new ArrayList<ProductVO>();
-		List<Product> entityProducts = productDao.getByMultipleParameter(category, unit, recordsPerPage, currentPage, search);
+		
 
-		int rows = entityProducts.size();
-
+		int rows = productDao.getNumberOfRows(category, unit, search);
+		
 		int nOfPages = rows / recordsPerPage;
 
 		// a két if sorrendje fontos
-		if (nOfPages % recordsPerPage > 0) {
+		if (rows % recordsPerPage > 0) {
 			nOfPages++;
 		}
 
@@ -78,12 +72,12 @@ public class ProductService {
 			currentPage=1;
 		}
 		
+		//fontos, hogy besettelje előtte a currentpage-t
+		List<Product> entityProducts = productDao.getByMultipleParameter(category, unit, recordsPerPage, currentPage, search);
 
 		for (Product product : entityProducts) {
 			products.add(modelMapper.map(product, ProductVO.class));
 		}
-
-		System.out.print("rows: "+rows+"noOfPages " + nOfPages + " currentPage " + currentPage + " recordsPerPage " + recordsPerPage);
 
 		return products;
 	}
@@ -95,21 +89,28 @@ public class ProductService {
 	public int getNumberOfPages(@Context HttpServletRequest request)
 			throws SQLException, ClassNotFoundException, UnsupportedEncodingException {
 
+		ProductDao productDao = new ProductDao();
+		CategoryDao categoryDao=new CategoryDao();
+		UnitDao unitDao=new UnitDao();
+		
+		Category category=categoryDao.findCategoryByName(request.getParameter("category"));
+		Unit unit=unitDao.findUnitByName(request.getParameter("unit"));
+		String search=request.getParameter("search");
 		int currentPage = Integer.parseInt(request.getParameter("currentPage"));
 		int recordsPerPage = Integer.parseInt(request.getParameter("recordsPerPage"));
 
-		ProductDao productDao = new ProductDao();
-
-		int rows = productDao.getNumberOfRows();
+		int rows = productDao.getNumberOfRows(category, unit, search);
 
 		int nOfPages = rows / recordsPerPage;
-
-		// a két if sorrendje fontos
-		if (nOfPages % recordsPerPage > 0) {
+		
+		// a két if sorrendje fontos a currentpage szempontjából
+		if (rows % recordsPerPage > 0) {
 			nOfPages++;
 		}
-
-		System.out.print("noOfPages " + nOfPages + " currentPage " + currentPage + " recordsPerPage " + recordsPerPage);
+		
+		if (currentPage > nOfPages) {
+			currentPage=1;
+		}
 
 		return nOfPages;
 
