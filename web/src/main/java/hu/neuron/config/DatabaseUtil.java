@@ -14,28 +14,29 @@ public class DatabaseUtil {
 
 			connection = DriverManager.getConnection(DatabaseProperties.getInstance().getUrl(),
 					DatabaseProperties.getInstance().getUserName(), DatabaseProperties.getInstance().getPassword());
-			
+
 		} catch (SQLException e) {
-			
+
 			e.getMessage();
 			System.out.append("rossz az sql");
 
 		} catch (ClassNotFoundException e) {
-			
+
 			e.getMessage();
 			System.out.append("nem találja az osztályt");
-		} 
+		}
 
 		return connection;
 	}
+
 	public static void closeConnection(Connection connection) {
 		try {
 			connection.close();
 		} catch (SQLException e) {
-			
+
 			e.printStackTrace();
 		}
-		
+
 	}
 
 }

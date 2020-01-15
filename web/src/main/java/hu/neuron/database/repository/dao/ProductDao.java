@@ -29,9 +29,9 @@ public class ProductDao extends GenericDao<Product> {
 		TypedQuery<Product> typedQuery = entityManager.createQuery(sql, Product.class);
 		typedQuery.setFirstResult(start);
 		typedQuery.setMaxResults(recordsPerPage);
-		
+
 		System.out.print(typedQuery.getResultList());
-		
+
 		return typedQuery.getResultList();
 
 	}
@@ -45,31 +45,33 @@ public class ProductDao extends GenericDao<Product> {
 
 	public int getNumberOfRows(Category category, Unit unit, String search) {
 
-		long row=entityManager.createQuery(
+		long row = entityManager.createQuery(
 				"SELECT COUNT(Id) FROM Product p WHERE (:category is null or p.category = :category) AND (:unit is null or p.unit = :unit) AND (:search is null or p.name LIKE CONCAT('%', :search,'%'))",
-				Long.class).setParameter("category", category).setParameter("unit", unit).setParameter("search", search).getSingleResult();
-			
-			//System.out.print("numOfRows"+numOfRows);
-			
-		return (int)row;
+				Long.class).setParameter("category", category).setParameter("unit", unit).setParameter("search", search)
+				.getSingleResult();
+
+		// System.out.print("numOfRows"+numOfRows);
+
+		return (int) row;
 	}
-	
+
 	public int getNumberOfRows() {
 
 		long numOfRows = 4;
 
-			String sql = "SELECT COUNT(Id)FROM Product ";
+		String sql = "SELECT COUNT(Id)FROM Product ";
 
-			numOfRows = entityManager.createQuery(sql, Long.class).getSingleResult();
-			
-			
-		return (int)numOfRows;
+		numOfRows = entityManager.createQuery(sql, Long.class).getSingleResult();
+
+		return (int) numOfRows;
 	}
-	
-	public List<Product> getByMultipleParameter(Category category, Unit unit, int recordsPerPage, int currentPage, String search) {
-	return entityManager.createQuery(
-			"SELECT p FROM Product p WHERE (:category is null or p.category = :category) AND (:unit is null or p.unit = :unit) AND (:search is null or p.name LIKE CONCAT('%', :search,'%'))",
-			Product.class).setParameter("category", category).setParameter("unit", unit).setParameter("search", search)
-			.setMaxResults(recordsPerPage).setFirstResult(recordsPerPage * (currentPage - 1)).getResultList();
+
+	public List<Product> getByMultipleParameter(Category category, Unit unit, int recordsPerPage, int currentPage,
+			String search) {
+		return entityManager.createQuery(
+				"SELECT p FROM Product p WHERE (:category is null or p.category = :category) AND (:unit is null or p.unit = :unit) AND (:search is null or p.name LIKE CONCAT('%', :search,'%'))",
+				Product.class).setParameter("category", category).setParameter("unit", unit)
+				.setParameter("search", search).setMaxResults(recordsPerPage)
+				.setFirstResult(recordsPerPage * (currentPage - 1)).getResultList();
 	}
 }

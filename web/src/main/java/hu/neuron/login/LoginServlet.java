@@ -25,11 +25,11 @@ import javax.servlet.http.HttpServletResponse;
 public class LoginServlet extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
-	
+
 	private ProductDao productDao = new ProductDao();
-	
+
 	private UnitDao unitDao = new UnitDao();
-	
+
 	private ModelMapper modelMapper = new ModelMapper();
 
 	@Override
@@ -38,24 +38,25 @@ public class LoginServlet extends HttpServlet {
 		String n = req.getParameter("username");
 
 		String p = req.getParameter("password");
-		
+
 		List<ProductVO> products = new ArrayList<>();
 		List<UnitVO> units = new ArrayList<>();
 
-		int recordsPerPage=5;
-		int currentPage=1;
-		
-		List<Product> entityProducts = productDao.findAll(currentPage,recordsPerPage);
+		int recordsPerPage = 5;
+		int currentPage = 1;
+
+		List<Product> entityProducts = productDao.findAll(currentPage, recordsPerPage);
 		List<Unit> entityUnits = unitDao.findAll();
 
 		for (Product product : entityProducts) {
 			products.add(modelMapper.map(product, ProductVO.class));
 		}
-		
-		units=modelMapper.map(entityUnits, new TypeToken<List<UnitVO>>() {}.getType());
-		
+
+		units = modelMapper.map(entityUnits, new TypeToken<List<UnitVO>>() {
+		}.getType());
+
 		int rows = productDao.getNumberOfRows();
-		System.out.println("\n\nnumOfRows"+rows+"\n");
+		System.out.println("\n\nnumOfRows" + rows + "\n");
 		int nOfPages = rows / recordsPerPage;
 
 		if (nOfPages % recordsPerPage > 0) {
@@ -68,7 +69,7 @@ public class LoginServlet extends HttpServlet {
 
 		if (n != null && p != null) {
 			if (n.equals("admin") && p.equals("password")) {
-				
+
 				session.setAttribute("authenticated", true);
 				session.setAttribute("products", products);
 				session.setAttribute("units", units);

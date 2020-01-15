@@ -35,7 +35,7 @@ public abstract class GenericDao<T> implements GenericDaoInterface<T> {
 		}
 		return Optional.empty();
 	}
-	
+
 	@Override
 	public void update(T entity) {
 		entityManager.merge(entity);

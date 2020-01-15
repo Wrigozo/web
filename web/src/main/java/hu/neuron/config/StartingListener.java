@@ -41,9 +41,9 @@ public class StartingListener implements ServletContextListener {
 		// Host and Port are not available in mem database
 
 		server.setDatabaseName(0, databaseName);
-		//HsqlProperties props = new HsqlProperties();
-		//props.setProperty(key, value);
-		//server.setProperties(props);
+		// HsqlProperties props = new HsqlProperties();
+		// props.setProperty(key, value);
+		// server.setProperties(props);
 		// settings and data of myDb will be stored in files
 		// myDb.properties and myDb.script
 		server.setDatabasePath(0, "mem:warehouse");

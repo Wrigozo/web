@@ -14,7 +14,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
-
 @SuppressWarnings("serial")
 @NoArgsConstructor
 @AllArgsConstructor
@@ -22,13 +21,13 @@ import lombok.ToString;
 @Setter
 @ToString
 @Entity
-public class Unit implements Serializable{
-	
+public class Unit implements Serializable {
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 
 	@Column(unique = true)
 	private String name;
-	
+
 }

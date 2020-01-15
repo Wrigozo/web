@@ -12,7 +12,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
- 
 
 @SuppressWarnings("serial")
 @NoArgsConstructor
@@ -21,15 +20,15 @@ import lombok.ToString;
 @Setter
 @ToString
 @Entity
-public class Product implements Serializable{
-	
+public class Product implements Serializable {
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
-	
+
 	@Column(unique = true)
 	private String name;
-	
+
 	@JoinColumn
 	@ManyToOne(cascade = CascadeType.ALL)
 	private Category category;
@@ -37,7 +36,7 @@ public class Product implements Serializable{
 	@JoinColumn
 	@ManyToOne(cascade = CascadeType.ALL)
 	private Unit unit;
-	
+
 	private int quantity;
 
 	private int purchasePrice;
@@ -45,5 +44,5 @@ public class Product implements Serializable{
 	private int salePrice;
 
 	private String description;
-	
+
 }

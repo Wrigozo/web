@@ -1,21 +1,21 @@
 function callServlet() {
 
 	event.preventDefault();
-	
+
 	var search = $('#search').val();
 	var category = $('#category').val();
 	var unit = $('#unit').val();
 	var currentpage = $('#currentPage').val();
 	var recordsperpage = $('#recordsPerPage').val();
-	
+
 	console.log("callservlet");
-	console.log("currentPage: "+currentpage);
-	
+	console.log("currentPage: " + currentpage);
+
 	$.ajax({
 		type : "GET",
 
 		url : "api/ProductService/getProducts",
-		
+
 		data : {
 			search : search,
 			category : category,
@@ -33,11 +33,10 @@ function callServlet() {
 			data = result;
 			str = ""
 			for (i = 0; i < result.length; i++) {
-				 console.log(result[i]);
-				str = str.concat("<tr><td>"
-						+ result[i].name + "</td><td>"
-						+ result[i].category.name+ "</td><td>"
-						+ result[i].unit.name+ "</td><td>"
+				console.log(result[i]);
+				str = str.concat("<tr><td>" + result[i].name + "</td><td>"
+						+ result[i].category.name + "</td><td>"
+						+ result[i].unit.name + "</td><td>"
 						+ result[i].quantity + "</td><td>"
 						+ result[i].purchasePrice + "</td><td>"
 						+ result[i].salePrice + "</td><td>"
@@ -45,7 +44,7 @@ function callServlet() {
 			}
 
 			$("tbody").append(str);
-			
+
 			paginator();
 		},
 
@@ -58,7 +57,7 @@ function callServlet() {
 }
 
 $(function() {
-	
+
 	$.ajax({
 		type : "GET",
 
@@ -69,14 +68,13 @@ $(function() {
 		success : function(result) {
 			str = "<option value='' selected>---</option>"
 			for (i = 0; i < result.length; i++) {
-				str = str.concat(
-						"<option id='"+result[i].name+"' value='"+result[i].name+"'></option>"
-				);
+				str = str.concat("<option id='" + result[i].name + "' value='"
+						+ result[i].name + "'></option>");
 			}
 
 			$("#category").append(str);
 			for (i = 0; i < result.length; i++) {
-				$('#'+result[i].name).html(result[i].name);
+				$('#' + result[i].name).html(result[i].name);
 			}
 			$('#currentPage').val(1);
 			paginator();
@@ -92,13 +90,13 @@ $(function() {
 })
 
 function previous() {
-	
+
 	event.preventDefault();
-	
+
 	var currentpage = $('#currentPage').val();
-	
-	if(currentpage>1){
-		$('#currentPage').val(currentpage*1-1);
+
+	if (currentpage > 1) {
+		$('#currentPage').val(currentpage * 1 - 1);
 		callServlet();
 	}
 
@@ -107,13 +105,13 @@ function previous() {
 function next() {
 
 	event.preventDefault();
-	
+
 	var search = $('#search').val();
 	var category = $('#category').val();
 	var unit = $('#unit').val();
 	var currentpage = $('#currentPage').val();
 	var recordsperpage = $('#recordsPerPage').val();
-		
+
 	console.log("next");
 
 	$.ajax({
@@ -122,7 +120,7 @@ function next() {
 		url : "api/ProductService/getNumberOfPages",
 
 		datatype : "json",
-		
+
 		data : {
 			search : search,
 			category : category,
@@ -132,110 +130,109 @@ function next() {
 		},
 
 		success : function(result) {
-				
-				if(currentpage<result){
-					$('#currentPage').val(currentpage*1+1);
-					callServlet();
-				}
-		}
-	});	
 
-	
+			if (currentpage < result) {
+				$('#currentPage').val(currentpage * 1 + 1);
+				callServlet();
+			}
+		}
+	});
 
 	callServlet();
 }
 
 function paginator() {
-	
+
 	event.preventDefault();
-	
+
 	var search = $('#search').val();
 	var category = $('#category').val();
 	var unit = $('#unit').val();
 	var currentpage = $('#currentPage').val();
 	var recordsperpage = $('#recordsPerPage').val();
-	
+
 	console.log("paginator");
-	console.log("currentpage"+currentpage);
-	
-	$.ajax({
-		type : "GET",
+	console.log("currentpage" + currentpage);
 
-		url : "api/ProductService/getNumberOfPages",
+	$
+			.ajax({
+				type : "GET",
 
-		datatype : "json",
-		
-		data : {
-			search : search,
-			category : category,
-			unit : unit,
-			currentPage : currentpage,
-			recordsPerPage : recordsperpage
-		},
+				url : "api/ProductService/getNumberOfPages",
 
-		success : function(result) {
-			console.log("max number of pages "+result);
-			buttons="";
-			$("span").remove();
-			for (i = 1; i < result+1; i++) {
-				 
-				buttons = buttons.concat("<span id='paginator'>");
-				buttons = buttons.concat(
-						" <button class='btn btn-primary' type='submit' onclick='page("+i+")'>"+i+"</button>\n"
-				);
-				buttons = buttons.concat("</span>");
-				console.log(buttons);
-				
-			}
-			
-			$("#Previous").after(buttons);
+				datatype : "json",
 
-		},
+				data : {
+					search : search,
+					category : category,
+					unit : unit,
+					currentPage : currentpage,
+					recordsPerPage : recordsperpage
+				},
 
-		error : function(e) {
-			console.log("Nem sikerült lekérni az adatokat!:(");
-		}
+				success : function(result) {
+					console.log("max number of pages " + result);
+					buttons = "";
+					$("span").remove();
+					for (i = 1; i < result + 1; i++) {
 
-	});
+						buttons = buttons.concat("<span id='paginator'>");
+						buttons = buttons
+								.concat(" <button class='btn btn-primary' type='submit' onclick='page("
+										+ i + ")'>" + i + "</button>\n");
+						buttons = buttons.concat("</span>");
+						console.log(buttons);
+
+					}
+
+					$("#Previous").after(buttons);
+
+				},
+
+				error : function(e) {
+					console.log("Nem sikerült lekérni az adatokat!:(");
+				}
+
+			});
 }
 
 function page(value) {
-	
+
 	event.preventDefault();
 
 	$('#currentPage').val(value);
-	
+
 	callServlet();
 }
 
 function first() {
-	
+
 	event.preventDefault();
 
 	$('#currentPage').val(1);
-	
+
 	callServlet();
 }
 
 function last() {
-	
+
 	event.preventDefault();
-	
+
 	var search = $('#search').val();
 	var category = $('#category').val();
 	var unit = $('#unit').val();
 	var currentpage = $('#currentPage').val();
 	var recordsperpage = $('#recordsPerPage').val();
-	
+
 	console.log("last");
-	
+
 	$.ajax({
 		type : "GET",
 
 		url : "api/ProductService/getNumberOfPages",
 
 		datatype : "json",
-		
+
 		data : {
 			search : search,
 			category : category,
@@ -245,12 +242,9 @@ function last() {
 		},
 
 		success : function(result) {
-				
-				$('#currentPage').val(result);
-				callServlet();
+
+			$('#currentPage').val(result);
+			callServlet();
 		}
-	});	
+	});
 }
-
-
-

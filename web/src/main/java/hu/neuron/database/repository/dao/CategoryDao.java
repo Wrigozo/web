@@ -5,18 +5,16 @@ import hu.neuron.database.repository.GenericDao;
 import lombok.Getter;
 import lombok.Setter;
 
-
 @Getter
 @Setter
-public class CategoryDao extends GenericDao<Category>{
+public class CategoryDao extends GenericDao<Category> {
 
 	public CategoryDao() {
 		super(Category.class);
 	}
-	
-	
+
 	public Category findCategoryByName(String name) {
-		if(name.equals("")) {
+		if (name.equals("")) {
 			return null;
 		}
 		Category entity = entityManager
@@ -24,5 +22,5 @@ public class CategoryDao extends GenericDao<Category>{
 				.setParameter("name", name).getSingleResult();
 		return entity != null ? entity : null;
 	}
-	
+
 }

@@ -18,14 +18,14 @@ public class LoginFilter implements Filter {
 	@Override
 	public void doFilter(ServletRequest req, ServletResponse response, FilterChain chain)
 			throws IOException, ServletException {
-		
+
 		HttpServletRequest request = (HttpServletRequest) req;
-		
+
 		HttpSession session = request.getSession();
 
 		boolean a = (boolean) session.getAttribute("authenticated");
 		System.out.print(a);
-		
+
 		if (a) {
 			chain.doFilter(request, response);
 

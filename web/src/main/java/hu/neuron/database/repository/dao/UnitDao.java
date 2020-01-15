@@ -7,14 +7,14 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class UnitDao extends GenericDao<Unit>{
+public class UnitDao extends GenericDao<Unit> {
 
 	public UnitDao() {
 		super(Unit.class);
 	}
-	
+
 	public Unit findUnitByName(String name) {
-		if(name.equals("")) {
+		if (name.equals("")) {
 			return null;
 		}
 		Unit entity = entityManager
