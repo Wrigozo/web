@@ -1,9 +1,5 @@
 package hu.neuron.config;
 
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.Reader;
 import java.sql.SQLException;
 
 import javax.servlet.ServletContext;
@@ -11,7 +7,6 @@ import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 import javax.servlet.annotation.WebListener;
 
-import org.apache.ibatis.jdbc.ScriptRunner;
 import org.hsqldb.server.Server;
 
 @WebListener
@@ -63,25 +58,6 @@ public class StartingListener implements ServletContextListener {
 		} catch (ClassNotFoundException | SQLException e) {
 			System.out.print("nincs connection");
 		}
-		ScriptRunner sr = null;
-		try {
-			sr = new ScriptRunner(DatabaseUtil.getConnection());
-		} catch (ClassNotFoundException e1) {
-
-			e1.printStackTrace();
-		} catch (SQLException e1) {
-
-			e1.printStackTrace();
-		}
-		Reader reader = null;
-		try {
-			reader = new BufferedReader(
-					new FileReader(StartingListener.class.getClassLoader().getResource("test.script").getFile()));
-		} catch (FileNotFoundException e) {
-
-			e.printStackTrace();
-		}
-		sr.runScript(reader);
 
 	}
 
