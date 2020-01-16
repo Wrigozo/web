@@ -8,9 +8,6 @@ function callServlet() {
 	var currentpage = $('#currentPage').val();
 	var recordsperpage = $('#recordsPerPage').val();
 
-	console.log("callservlet");
-	console.log("currentPage: " + currentpage);
-
 	$.ajax({
 		type : "GET",
 
@@ -33,7 +30,6 @@ function callServlet() {
 			data = result;
 			str = ""
 			for (i = 0; i < result.length; i++) {
-				console.log(result[i]);
 				str = str.concat("<tr><td>" + result[i].name + "</td><td>"
 						+ result[i].category.name + "</td><td>"
 						+ result[i].unit.name + "</td><td>"
@@ -112,8 +108,6 @@ function next() {
 	var currentpage = $('#currentPage').val();
 	var recordsperpage = $('#recordsPerPage').val();
 
-	console.log("next");
-
 	$.ajax({
 		type : "GET",
 
@@ -151,11 +145,7 @@ function paginator() {
 	var currentpage = $('#currentPage').val();
 	var recordsperpage = $('#recordsPerPage').val();
 
-	console.log("paginator");
-	console.log("currentpage" + currentpage);
-
-	$
-			.ajax({
+	$.ajax({
 				type : "GET",
 
 				url : "api/ProductService/getNumberOfPages",
@@ -171,7 +161,6 @@ function paginator() {
 				},
 
 				success : function(result) {
-					console.log("max number of pages " + result);
 					buttons = "";
 					$("span").remove();
 					for (i = 1; i < result + 1; i++) {
@@ -181,12 +170,9 @@ function paginator() {
 								.concat(" <button class='btn btn-primary' type='submit' onclick='page("
 										+ i + ")'>" + i + "</button>\n");
 						buttons = buttons.concat("</span>");
-						console.log(buttons);
-
 					}
 
 					$("#Previous").after(buttons);
-
 				},
 
 				error : function(e) {
@@ -223,8 +209,6 @@ function last() {
 	var unit = $('#unit').val();
 	var currentpage = $('#currentPage').val();
 	var recordsperpage = $('#recordsPerPage').val();
-
-	console.log("last");
 
 	$.ajax({
 		type : "GET",

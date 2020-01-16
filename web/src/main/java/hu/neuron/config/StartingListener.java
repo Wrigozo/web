@@ -1,6 +1,5 @@
 package hu.neuron.config;
 
-import java.beans.Statement;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -13,7 +12,6 @@ import javax.servlet.ServletContextListener;
 import javax.servlet.annotation.WebListener;
 
 import org.apache.ibatis.jdbc.ScriptRunner;
-import org.hsqldb.persist.HsqlProperties;
 import org.hsqldb.server.Server;
 
 @WebListener

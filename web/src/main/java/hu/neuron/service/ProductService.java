@@ -1,7 +1,6 @@
 package hu.neuron.service;
 
 import java.io.UnsupportedEncodingException;
-import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -17,16 +16,11 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import org.modelmapper.ModelMapper;
-
 import com.google.gson.reflect.TypeToken;
 
 import hu.neuron.config.DatabaseUtil;
-import hu.neuron.database.entity.Category;
-import hu.neuron.database.entity.Product;
-import hu.neuron.database.entity.Unit;
-import hu.neuron.database.repository.dao.CategoryDao;
-import hu.neuron.database.repository.dao.ProductDao;
-import hu.neuron.database.repository.dao.UnitDao;
+import hu.neuron.database.entity.*;
+import hu.neuron.database.repository.dao.*;
 import hu.neuron.warehouse.client.api.CategoryVO;
 import hu.neuron.warehouse.client.api.ProductVO;
 
@@ -49,9 +43,7 @@ public class ProductService {
 	@Produces(MediaType.APPLICATION_JSON)
 	public List<ProductVO> getProduct(@Context HttpServletRequest request)
 			throws SQLException, ClassNotFoundException, UnsupportedEncodingException {
-
-		Connection conn = DatabaseUtil.getConnection();
-
+		
 		Category category = categoryDao.findCategoryByName(request.getParameter("category"));
 		Unit unit = unitDao.findUnitByName(request.getParameter("unit"));
 		String search = request.getParameter("search");

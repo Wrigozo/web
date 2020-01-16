@@ -9,6 +9,7 @@ import javax.servlet.http.HttpSession;
 import org.modelmapper.ModelMapper;
 
 import com.google.gson.reflect.TypeToken;
+
 import hu.neuron.warehouse.client.api.ProductVO;
 import hu.neuron.warehouse.client.api.UnitVO;
 import hu.neuron.database.entity.Product;
@@ -47,7 +48,7 @@ public class LoginServlet extends HttpServlet {
 
 		List<Product> entityProducts = productDao.findAll(currentPage, recordsPerPage);
 		List<Unit> entityUnits = unitDao.findAll();
-
+		
 		for (Product product : entityProducts) {
 			products.add(modelMapper.map(product, ProductVO.class));
 		}
@@ -56,14 +57,11 @@ public class LoginServlet extends HttpServlet {
 		}.getType());
 
 		int rows = productDao.getNumberOfRows();
-		System.out.println("\n\nnumOfRows" + rows + "\n");
 		int nOfPages = rows / recordsPerPage;
 
 		if (nOfPages % recordsPerPage > 0) {
 			nOfPages++;
 		}
-
-		System.out.print(nOfPages);
 
 		HttpSession session = req.getSession(true);
 
