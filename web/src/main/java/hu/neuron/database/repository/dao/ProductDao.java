@@ -24,13 +24,13 @@ public class ProductDao extends GenericDao<Product> {
 	public List<Product> findAll(int currentPage, int recordsPerPage) {
 
 		int start = currentPage * recordsPerPage - recordsPerPage;
-		String sql = "FROM Product";
+		String sql = "SELECT p FROM Product p";
 
 		TypedQuery<Product> typedQuery = entityManager.createQuery(sql, Product.class);
 		typedQuery.setFirstResult(start);
 		typedQuery.setMaxResults(recordsPerPage);
 
-		System.out.print(typedQuery.getResultList());
+		//System.out.print(typedQuery.getResultList());
 
 		return typedQuery.getResultList();
 
