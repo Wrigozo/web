@@ -29,5 +29,4 @@ public class Unit implements Serializable {
 
 	@Column(unique = true)
 	private String name;
-
 }

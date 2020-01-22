@@ -14,25 +14,24 @@ import com.google.gson.Gson;
 
 import hu.neuron.login.modell.Result;
 
+
+@SuppressWarnings("serial")
 public class LoginServletAsync extends HttpServlet {
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
+
 	Map<String, Boolean> map = new HashMap<String, Boolean>();
 
 	@Override
 	public void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 
-		String n = req.getParameter("username");
-		String p = req.getParameter("password");
+		String name = req.getParameter("username");
+		String password = req.getParameter("password");
 		Gson gson = new Gson();
 		HttpSession session;
 		Result r = new Result(false);
 
-		if (n != null && p != null) {
+		if (name != null && password != null) {
 
-			if (n.equals("admin") && p.equals("password")) {
+			if (name.equals("admin") && password.equals("password")) {
 
 				session = req.getSession();
 				session.setAttribute("authenticated", true);

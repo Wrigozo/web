@@ -6,16 +6,15 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
+/**
+ * Represents a catogory value object.
+ */
 
 @SuppressWarnings("serial")
 @Getter
 @Setter
 @ToString
 public class CategoryVO implements Serializable{
-
-	/**
-	 * Represents a catogory value object.
-	 */
 	
 	private String name;
 	
@@ -25,6 +24,4 @@ public class CategoryVO implements Serializable{
 	public CategoryVO(String name) {
 		this.name=name;
 	}
-
-
 }

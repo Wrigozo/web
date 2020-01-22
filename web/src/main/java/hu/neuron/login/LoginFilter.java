@@ -23,16 +23,11 @@ public class LoginFilter implements Filter {
 
 		HttpSession session = request.getSession();
 
-		boolean a = (boolean) session.getAttribute("authenticated");
-		System.out.print(a);
-
-		if (a) {
+		if ((boolean) session.getAttribute("authenticated")) {
 			chain.doFilter(request, response);
 
 		} else {
 			System.out.print("nincs session");
 		}
-
 	}
-
 }

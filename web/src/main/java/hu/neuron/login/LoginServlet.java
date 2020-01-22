@@ -16,35 +16,36 @@ import hu.neuron.database.entity.Product;
 import hu.neuron.database.entity.Unit;
 import hu.neuron.database.repository.dao.ProductDao;
 import hu.neuron.database.repository.dao.UnitDao;
+import hu.neuron.database.repository.daoimpl.ProductDaoImpl;
+import hu.neuron.database.repository.daoimpl.UnitDaoImpl;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+@SuppressWarnings("serial")
 //@WebServlet("/login")
 public class LoginServlet extends HttpServlet {
 
-	private static final long serialVersionUID = 1L;
+	private static final int recordsPerPage = 5;
+	private static final int currentPage = 1;
 
-	private ProductDao productDao = new ProductDao();
+	private ProductDao productDao = new ProductDaoImpl();
 
-	private UnitDao unitDao = new UnitDao();
+	private UnitDao unitDao = new UnitDaoImpl();
 
 	private ModelMapper modelMapper = new ModelMapper();
 
 	@Override
 	public void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 
-		String n = req.getParameter("username");
+		String name = req.getParameter("username");
 
-		String p = req.getParameter("password");
+		String password = req.getParameter("password");
 
 		List<ProductVO> products = new ArrayList<>();
 		List<UnitVO> units = new ArrayList<>();
-
-		int recordsPerPage = 5;
-		int currentPage = 1;
 
 		List<Product> entityProducts = productDao.findAll(currentPage, recordsPerPage);
 		List<Unit> entityUnits = unitDao.findAll();
@@ -65,8 +66,8 @@ public class LoginServlet extends HttpServlet {
 
 		HttpSession session = req.getSession(true);
 
-		if (n != null && p != null) {
-			if (n.equals("admin") && p.equals("password")) {
+		if (name != null && password != null) {
+			if (name.equals("admin") && password.equals("password")) {
 
 				session.setAttribute("authenticated", true);
 				session.setAttribute("products", products);

@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html>
+<html
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	>
+
+<h:head>
+	<title>Products</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1"></meta>
+<!-- 	<h:outputStylesheet name="primeicons/primeicons.css" library="primefaces"/> -->
+<!-- 	<h:outputStylesheet name="primeng/resources/themes/nova-light/theme.css" library="primefaces"/> -->
+<!-- 	<h:outputStylesheet name="primeng/resources/primeng.min.css" library="primefaces"/> -->
+	<link rel="stylesheet"
+		href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+		integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+		crossorigin ="anonymous"></link>
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+		integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+		crossorigin ="anonymous"></script>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+		integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+		crossorigin ="anonymous"></script>
+	<script
+		src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+		integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+		crossorigin ="anonymous"></script>
+	<script src="https://kit.fontawesome.com/a9139e4db1.js"
+		crossorigin ="anonymous"></script>
+	
+	<link rel="stylesheet" type="text/css" href="../resources/styles/main.css"></link>
+	
+	<style>
+		.view {
+			background: white;
+			border-radius: 1em;
+			padding: 2em;
+			box-shadow: 0px 0px 3px 0.8em rgb(18, 102, 144);
+			position: absolute;
+			top: 50%;
+			transform: translate(0%, -50%);
+		}
+	</style>
+
+</h:head>
+<h:body>
+
+	<div class="view">
+		<h:form >
+	
+			<h:commandButton action="#{language.changeLanguage('')}"
+				value="#{msg['application.english']}" />
+			<h:outputText value=" " />
+			<h:commandButton action="#{language.changeLanguage('hu')}"
+				value="#{msg['application.hungarian']}" />
+			
+		</h:form>
+	
+		<p>
+			<h:outputText value="#{msg['application.language']}" />
+		</p>
+		
+		<h:form id="form">
+		
+		    <p:dataTable var="product" value="#{product.productValues}" paginator="true" rows="15" paginatorPosition="bottom"
+		                 paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}"
+		                 rowsPerPageTemplate="5,10,20,50"  multiViewState="true" id="productTable" lazy="true"> 
+	<!-- 	        selection="#{product.selectedProduct}" -->
+		        <p:column headerText="#{msg['product.name']}" filterBy="#{product.name}" sortBy="#{product.name}">
+		            <h:outputText value="#{product.name}" />
+		        </p:column>   
+		        
+		        <p:column headerText="#{msg['product.category']}" filterBy="#{product.category.name}" sortBy="#{product.category.name}" filterMatchMode="exact">
+		            <f:facet name="filter">
+		                <h:selectOneMenu value="#{product.category}">
+							<f:selectItems value="#{product.categoryValue}" var="category"
+							itemLabel="#{category.name}" itemValue="#{category}" />
+						</h:selectOneMenu>
+		            </f:facet>
+	            	<h:outputText value="#{product.category.name}" />
+	        	</p:column>		
+	        	
+	        	<p:column headerText="#{msg['product.unit']}" filterBy="#{product.unit.name}" sortBy="#{product.unit.name}" filterMatchMode="exact">
+		            <f:facet name="filter">
+		                <h:selectOneMenu class="btn-group" value="#{product}">
+							<f:selectItems value="#{product.unitValue}" var="unit"
+							itemLabel="#{unit.name}" itemValue="unit" />
+						</h:selectOneMenu>
+		            </f:facet>
+	            	<h:outputText value="#{product.unit.name}" />
+	        	</p:column>	     
+				
+		        <p:column headerText="#{msg['product.quantity']}" filterBy="#{product.quantity}" sortBy="#{product.quantity}" placeholder="Search...">
+		            <h:outputText value="#{product.quantity}" />   
+		        </p:column>
+		        
+		        <p:column headerText="#{msg['product.purchaseprice']}" filterBy="#{product.purchasePrice}" sortBy="#{product.purchasePrice}">
+		            <h:outputText value="#{product.purchasePrice}" />
+		        </p:column>
+		        
+		        <p:column headerText="#{msg['product.saleprice']}" filterBy="#{product.salePrice}" sortBy="#{product.salePrice}">
+		            <h:outputText value="#{product.salePrice}" />
+		        </p:column>
+		        
+		        <p:column headerText="#{msg['product.description']}" filterBy="#{product.description}" sortBy="#{product.description}">
+		            <h:outputText value="#{product.description}" />
+		        </p:column>   
+		        
+		        <f:facet name="paginatorBottomRight">
+					<p:commandButton type="button" icon="pi pi-cloud-upload" />
+				</f:facet>
+				     
+		    </p:dataTable>
+		    
+		</h:form>
+	</div>
+	
+</h:body>
+</html>

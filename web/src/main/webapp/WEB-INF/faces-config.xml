@@ -8,7 +8,7 @@
 	<application>
 
 		<resource-bundle>
-			<base-name>hu.neuron.i18n.messages</base-name>
+			<base-name>META-INF.i18n.messages</base-name>
 			<var>msg</var>
 		</resource-bundle>
 

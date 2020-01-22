@@ -7,16 +7,16 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
+/**
+ * Represents a product value object.
+ */
+
 @SuppressWarnings("serial")
 @Getter
 @Setter
 @ToString
 @AllArgsConstructor
 public class ProductVO implements Serializable {
-
-	/**
-	 * Represents a product value object.
-	 */
 
 	private String name;
 

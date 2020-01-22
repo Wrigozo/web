@@ -2,26 +2,21 @@ package hu.neuron.login.modell;
 
 import java.io.Serializable;
 
+import lombok.AccessLevel;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+@Getter
+@Setter
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
+@SuppressWarnings("serial")
 public class Result implements Serializable {
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
 	private boolean result = false;
 
-	private Result() {
-	}
-
-	public Result(boolean r) {
-		this.result = r;
-	}
-
-	public boolean getResult() {
-		return result;
-	}
-
-	public void setResult(boolean result) {
+	public Result(boolean result) {
 		this.result = result;
 	}
+
 }

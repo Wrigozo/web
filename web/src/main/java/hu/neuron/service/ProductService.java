@@ -21,6 +21,9 @@ import com.google.gson.reflect.TypeToken;
 import hu.neuron.config.DatabaseUtil;
 import hu.neuron.database.entity.*;
 import hu.neuron.database.repository.dao.*;
+import hu.neuron.database.repository.daoimpl.CategoryDaoImpl;
+import hu.neuron.database.repository.daoimpl.ProductDaoImpl;
+import hu.neuron.database.repository.daoimpl.UnitDaoImpl;
 import hu.neuron.warehouse.client.api.CategoryVO;
 import hu.neuron.warehouse.client.api.ProductVO;
 
@@ -33,9 +36,9 @@ import hu.neuron.warehouse.client.api.ProductVO;
 @Path("/ProductService")
 public class ProductService {
 
-	private ProductDao productDao = new ProductDao();
-	private CategoryDao categoryDao = new CategoryDao();
-	private UnitDao unitDao = new UnitDao();
+	private ProductDao productDao = new ProductDaoImpl();
+	private CategoryDao categoryDao = new CategoryDaoImpl();
+	private UnitDao unitDao = new UnitDaoImpl();
 	private ModelMapper modelMapper = new ModelMapper();
 
 	@GET
@@ -117,8 +120,7 @@ public class ProductService {
 
 		List<Category> entityCategories = categoryDao.findAll();
 
-		categories = modelMapper.map(entityCategories, new TypeToken<List<CategoryVO>>() {
-		}.getType());
+		categories = modelMapper.map(entityCategories, new TypeToken<List<CategoryVO>>() {}.getType());
 
 		System.out.print(categories);
 

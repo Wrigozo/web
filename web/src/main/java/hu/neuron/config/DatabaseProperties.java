@@ -1,16 +1,18 @@
 package hu.neuron.config;
 
+import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 /**
+ * Class for storing the required data members to connect to the database.
  * A singleton class.
  * 
  * @author szaboa
  *
  */
-@NoArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
 @Getter
 @Setter
 public class DatabaseProperties {
@@ -28,5 +30,4 @@ public class DatabaseProperties {
 	public static DatabaseProperties getInstance() {
 		return INSTANCE;
 	}
-
 }

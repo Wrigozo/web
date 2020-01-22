@@ -29,5 +29,4 @@ public class Category implements Serializable {
 
 	@Column(unique = true)
 	private String name;
-
 }

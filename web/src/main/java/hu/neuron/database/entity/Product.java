@@ -20,6 +20,10 @@ import lombok.ToString;
 @Setter
 @ToString
 @Entity
+@NamedQueries({
+    @NamedQuery(name = "Product.filtering",
+            query = "SELECT p FROM Product p WHERE (:category is null or p.category = :category) AND (:unit is null or p.unit = :unit) AND (:search is null or p.name LIKE CONCAT('%', :search,'%'))")
+})
 public class Product implements Serializable {
 
 	@Id
@@ -44,5 +48,4 @@ public class Product implements Serializable {
 	private int salePrice;
 
 	private String description;
-
 }
